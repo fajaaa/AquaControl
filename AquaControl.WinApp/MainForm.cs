@@ -24,5 +24,13 @@ namespace AquaControl.WinApp
         {
             Application.Exit();
         }
+
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            panelContent.Controls.Clear();
+            FirmaInfo info = new FirmaInfo();
+            //FirmaInfo.Dock=DockStyle.Fill;
+            panelContent.Controls.Add(info);
+        }
     }
 }

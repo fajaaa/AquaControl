@@ -37,6 +37,7 @@
             panelForPic = new Panel();
             lblAdmin = new Label();
             pictureBox1 = new PictureBox();
+            panelContent = new Panel();
             panelMenu.SuspendLayout();
             panelForPic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -53,8 +54,9 @@
             panelMenu.Controls.Add(panelForPic);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
+            panelMenu.Margin = new Padding(3, 2, 3, 2);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(287, 896);
+            panelMenu.Size = new Size(252, 672);
             panelMenu.TabIndex = 0;
             // 
             // btnSettings
@@ -65,14 +67,16 @@
             btnSettings.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSettings.ForeColor = Color.FromArgb(255, 255, 128);
             btnSettings.Image = Properties.Resources.settings_icona;
-            btnSettings.Location = new Point(0, 778);
+            btnSettings.Location = new Point(0, 582);
+            btnSettings.Margin = new Padding(3, 2, 3, 2);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(283, 114);
+            btnSettings.Size = new Size(248, 86);
             btnSettings.TabIndex = 4;
             btnSettings.Text = "Settings";
             btnSettings.TextAlign = ContentAlignment.BottomCenter;
             btnSettings.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Click += btnSettings_Click;
             // 
             // button3
             // 
@@ -82,9 +86,10 @@
             button3.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.FromArgb(255, 255, 128);
             button3.Image = Properties.Resources.volume_control_icona;
-            button3.Location = new Point(0, 402);
+            button3.Location = new Point(0, 302);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(283, 114);
+            button3.Size = new Size(248, 86);
             button3.TabIndex = 3;
             button3.Text = "Water Reading";
             button3.TextAlign = ContentAlignment.BottomCenter;
@@ -99,9 +104,10 @@
             button2.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.FromArgb(255, 255, 128);
             button2.Image = Properties.Resources.user_icona;
-            button2.Location = new Point(0, 288);
+            button2.Location = new Point(0, 216);
+            button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
-            button2.Size = new Size(283, 114);
+            button2.Size = new Size(248, 86);
             button2.TabIndex = 2;
             button2.Text = "Users";
             button2.TextAlign = ContentAlignment.BottomCenter;
@@ -116,9 +122,10 @@
             button1.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(255, 255, 128);
             button1.Image = Properties.Resources.dashboard_icona;
-            button1.Location = new Point(0, 174);
+            button1.Location = new Point(0, 130);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(283, 114);
+            button1.Size = new Size(248, 86);
             button1.TabIndex = 1;
             button1.Text = "Dashboard";
             button1.TextAlign = ContentAlignment.BottomCenter;
@@ -132,8 +139,9 @@
             panelForPic.Controls.Add(pictureBox1);
             panelForPic.Dock = DockStyle.Top;
             panelForPic.Location = new Point(0, 0);
+            panelForPic.Margin = new Padding(3, 2, 3, 2);
             panelForPic.Name = "panelForPic";
-            panelForPic.Size = new Size(283, 174);
+            panelForPic.Size = new Size(248, 130);
             panelForPic.TabIndex = 0;
             // 
             // lblAdmin
@@ -143,7 +151,7 @@
             lblAdmin.ForeColor = Color.FromArgb(95, 129, 140);
             lblAdmin.Location = new Point(0, 0);
             lblAdmin.Name = "lblAdmin";
-            lblAdmin.Size = new Size(283, 47);
+            lblAdmin.Size = new Size(248, 35);
             lblAdmin.TabIndex = 1;
             lblAdmin.Text = "Admin: ";
             lblAdmin.TextAlign = ContentAlignment.MiddleCenter;
@@ -152,23 +160,34 @@
             // 
             pictureBox1.Dock = DockStyle.Bottom;
             pictureBox1.Image = Properties.Resources.AquaControlLogo_11;
-            pictureBox1.Location = new Point(0, 50);
+            pictureBox1.Location = new Point(0, 37);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(283, 124);
+            pictureBox1.Size = new Size(248, 93);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // panelContent
+            // 
+            panelContent.Dock = DockStyle.Fill;
+            panelContent.Location = new Point(252, 0);
+            panelContent.Name = "panelContent";
+            panelContent.Size = new Size(1254, 672);
+            panelContent.TabIndex = 1;
+            // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.FromArgb(95, 129, 140);
-            ClientSize = new Size(1721, 896);
+            ClientSize = new Size(1506, 672);
+            Controls.Add(panelContent);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Aqua Control";
@@ -191,5 +210,6 @@
         private Button button3;
         private Button button2;
         private Button btnSettings;
+        private Panel panelContent;
     }
 }

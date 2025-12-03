@@ -31,5 +31,8 @@ namespace AquaControl.Infrastructure
         public DbSet<Inkasant> Inkasanti { get; set; }
         public DbSet<Ocitavanje> Ocitavanja { get; set; }
         public DbSet<Admin> Admini { get; set; }
+        public DbSet<EvidencijaKvara> EvidencijaKvarova { get; set; }
+        public DbSet<Firma> Firme { get; set; }
+        public DbSet<Transakcija> Transakcije { get; set; }
     }
 }

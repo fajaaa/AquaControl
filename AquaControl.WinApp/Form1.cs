@@ -9,7 +9,7 @@ namespace AquaControl.WinApp
     public partial class Form1 : Form
     {
         AquaControlDbContext baza = new AquaControlDbContext();
-        List<Ocitavanje> lista = new List<Ocitavanje>();
+        List<Transakcija> lista = new List<Transakcija>();
         public Form1()
         {
             this.Paint += new PaintEventHandler(Form1_Paint);
@@ -28,9 +28,7 @@ namespace AquaControl.WinApp
             //    .Include(x => x.Mjesto)
             //    .Include(x => x.Tarifa).ToList();
 
-            lista = baza.Ocitavanja
-                .Include(x => x.MjerniUredjaj)
-                .Include(x => x.Inkasant).ToList();
+            lista = baza.Transakcije.ToList();
             textBox1.Text = string.Join(Environment.NewLine, lista.Select(g => g.ToString()));
 
         }

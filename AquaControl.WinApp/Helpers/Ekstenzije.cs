@@ -12,5 +12,11 @@ namespace AquaControl.WinApp.Helpers
         {
             return !string.IsNullOrWhiteSpace(sadrzaj);
         }
+
+        public static void ClearText(this TextBox txt)
+        {
+            txt.Text = string.Empty;
+        }
+
     }
 }

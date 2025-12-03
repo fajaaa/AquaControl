@@ -10,10 +10,15 @@ namespace AquaControl.Data
     {
         public int AdminId { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; } // možeš kasnije šifrirati
+        public string Password { get; set; }
+        public bool IsSuperAdmin { get; set; }
         public override string ToString()
         {
-            return $"{Username}";
+            if (IsSuperAdmin)
+            {
+                return $"Super admin {Username}";
+            }
+            else return $"{Username}";
         }
         public string PrintJustName()
         {
