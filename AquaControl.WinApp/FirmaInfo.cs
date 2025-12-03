@@ -17,13 +17,15 @@ namespace AquaControl.WinApp
     {
         AquaControlDbContext baza = new AquaControlDbContext();
         List<Admin> listaAdmina = new List<Admin>();
-        public FirmaInfo()
+        private Admin admin;
+
+        public FirmaInfo(Admin admin = null)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             dgvAdmini.AutoGenerateColumns = false;
+            this.admin = admin;
         }
-
 
         private void FirmaInfo_Load(object sender, EventArgs e)
         {
@@ -57,22 +59,25 @@ namespace AquaControl.WinApp
 
         private void dgvAdmini_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (!admin.IsSuperAdmin)
             {
-                MessageBox.Show("editaj admina");
-            }
-            else if (e.ColumnIndex == 2)
-            {
-                var admin = listaAdmina[e.RowIndex];
-                if (admin.IsSuperAdmin)
-                {
-                    MessageBox.Show($"Nije moguce izbrisati super admina iz AquaControl baze. ",
+                MessageBox.Show($"Nije moguce urediti/izbrisati super admina iz AquaControl baze. ",
                 "Neuspjesno brisanje",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
-                }
-                else
+            }
+            else
+            {
+                if (e.ColumnIndex == 1)
                 {
+                    var editForm = new EditAdmin(listaAdmina[e.RowIndex]);
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                        UcitajAdmine();
+                }
+                else if (e.ColumnIndex == 2)
+                {
+                    var admin = listaAdmina[e.RowIndex];
+
                     if (MessageBox.Show("Da li sigurno želiš obrisati ovog admina?",
                     "Potvrda",
                     MessageBoxButtons.YesNo,
@@ -84,7 +89,6 @@ namespace AquaControl.WinApp
                 }
                 UcitajAdmine();
             }
-
         }
 
         private void btnNoviAdmin_Click(object sender, EventArgs e)

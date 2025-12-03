@@ -30,6 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             gbFirma = new GroupBox();
+            gbFirmaInfo = new GroupBox();
+            label7 = new Label();
+            gbTransakcijee = new GroupBox();
             gbAdmin = new GroupBox();
             label1 = new Label();
             lblAdmini = new Label();
@@ -49,6 +52,8 @@
             panel1 = new Panel();
             panel2 = new Panel();
             err = new ErrorProvider(components);
+            gbFirma.SuspendLayout();
+            gbFirmaInfo.SuspendLayout();
             gbAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAdmini).BeginInit();
             bgNoviAdmin.SuspendLayout();
@@ -60,6 +65,8 @@
             // 
             // gbFirma
             // 
+            gbFirma.Controls.Add(gbFirmaInfo);
+            gbFirma.Controls.Add(gbTransakcijee);
             gbFirma.Dock = DockStyle.Fill;
             gbFirma.FlatStyle = FlatStyle.Flat;
             gbFirma.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -70,6 +77,43 @@
             gbFirma.TabIndex = 0;
             gbFirma.TabStop = false;
             gbFirma.Text = "Podaci o firmi";
+            // 
+            // gbFirmaInfo
+            // 
+            gbFirmaInfo.Controls.Add(label7);
+            gbFirmaInfo.Dock = DockStyle.Bottom;
+            gbFirmaInfo.FlatStyle = FlatStyle.Flat;
+            gbFirmaInfo.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbFirmaInfo.ForeColor = Color.Black;
+            gbFirmaInfo.Location = new Point(3, 358);
+            gbFirmaInfo.Name = "gbFirmaInfo";
+            gbFirmaInfo.Size = new Size(1349, 387);
+            gbFirmaInfo.TabIndex = 3;
+            gbFirmaInfo.TabStop = false;
+            gbFirmaInfo.Text = "Informacije";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(6, 55);
+            label7.Name = "label7";
+            label7.Size = new Size(141, 23);
+            label7.TabIndex = 1;
+            label7.Text = "Lista admina:";
+            // 
+            // gbTransakcijee
+            // 
+            gbTransakcijee.Dock = DockStyle.Fill;
+            gbTransakcijee.FlatStyle = FlatStyle.Flat;
+            gbTransakcijee.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbTransakcijee.ForeColor = Color.Black;
+            gbTransakcijee.Location = new Point(3, 33);
+            gbTransakcijee.Name = "gbTransakcijee";
+            gbTransakcijee.Size = new Size(1349, 712);
+            gbTransakcijee.TabIndex = 2;
+            gbTransakcijee.TabStop = false;
+            gbTransakcijee.Text = "Transakcije";
             // 
             // gbAdmin
             // 
@@ -91,11 +135,11 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(402, 59);
+            label1.Location = new Point(240, 59);
             label1.Name = "label1";
-            label1.Size = new Size(267, 18);
+            label1.Size = new Size(429, 18);
             label1.TabIndex = 2;
-            label1.Text = "Admine mozete uredivati ili obrisati";
+            label1.Text = "Admine mozete uredivati ili obrisati, ako ste super admin";
             // 
             // lblAdmini
             // 
@@ -188,11 +232,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.user;
+            pictureBox1.Image = Properties.Resources.id_card;
             pictureBox1.Location = new Point(35, 60);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(207, 199);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
             // 
@@ -281,6 +325,9 @@
             Name = "FirmaInfo";
             Size = new Size(1355, 748);
             Load += FirmaInfo_Load;
+            gbFirma.ResumeLayout(false);
+            gbFirmaInfo.ResumeLayout(false);
+            gbFirmaInfo.PerformLayout();
             gbAdmin.ResumeLayout(false);
             gbAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAdmini).EndInit();
@@ -315,5 +362,8 @@
         private ErrorProvider err;
         private TextBox txtPrezime;
         private Label lblPrezime;
+        private GroupBox gbFirmaInfo;
+        private Label label7;
+        private GroupBox gbTransakcijee;
     }
 }
