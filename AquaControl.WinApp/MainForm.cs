@@ -6,13 +6,23 @@ namespace AquaControl.WinApp
     {
         private Admin admin;
 
-        public MainForm(Admin admin)
+        public MainForm(Admin admin = null)
         {
             InitializeComponent();
             this.admin = admin;
-
-            this.Text = "Dobro nam dosli: " + this.admin.ToString();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            if (admin != null)
+            {
+                lblAdmin.Text = $"Welcome to AquaControl, {admin.PrintJustName()}";
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

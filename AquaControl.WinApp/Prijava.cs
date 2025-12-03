@@ -28,6 +28,7 @@ namespace AquaControl.WinApp
 
         private void Prijava_Load(object sender, EventArgs e)
         {
+            txtUserName.Focus();
             txtPassword.UseSystemPasswordChar = true;
             listaAdmina = baza.Admini.ToList();
         }
