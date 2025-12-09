@@ -40,7 +40,14 @@ namespace AquaControl.WinApp
 
         private void lblExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (admin != null)
+            {
+                this.Close();
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private void lblClearFields_Click(object sender, EventArgs e)
@@ -66,11 +73,25 @@ namespace AquaControl.WinApp
         {
             if (Validiraj())
             {
-                admin.Password = txtPassword.Text;
-                admin.Username= $"{txtIme.Text}.{txtPrezime.Text}";
-                admin.IsSuperAdmin=cbSuperAdmin.Checked;
+                if (admin != null)
+                {
+                    admin.Password = txtPassword.Text;
+                    admin.Username = $"{txtIme.Text}.{txtPrezime.Text}";
+                    admin.IsSuperAdmin = cbSuperAdmin.Checked;
 
-                baza.Update(admin);
+                    baza.Update(admin);
+                }
+                else
+                {
+                    var admin = new Admin()
+                    {
+                        Username= $"{txtIme.Text}.{txtPrezime.Text}",
+                        Password = txtPassword.Text,
+                        IsSuperAdmin=true,
+                    };
+                    baza.Admini.Add(admin);
+                }
+
                 baza.SaveChanges();
 
                 this.DialogResult = DialogResult.OK;

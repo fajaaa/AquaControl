@@ -31,6 +31,14 @@
             components = new System.ComponentModel.Container();
             gbFirma = new GroupBox();
             gbFirmaInfo = new GroupBox();
+            btnEditFirma = new Button();
+            lblEmail = new Label();
+            label8 = new Label();
+            lblBrojTelefona = new Label();
+            label6 = new Label();
+            lblAdresa = new Label();
+            label5 = new Label();
+            lblNaziv = new Label();
             label7 = new Label();
             gbTransakcijee = new GroupBox();
             gbAdmin = new GroupBox();
@@ -52,6 +60,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             err = new ErrorProvider(components);
+            pictureBox2 = new PictureBox();
             gbFirma.SuspendLayout();
             gbFirmaInfo.SuspendLayout();
             gbAdmin.SuspendLayout();
@@ -61,6 +70,7 @@
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)err).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // gbFirma
@@ -73,34 +83,127 @@
             gbFirma.ForeColor = Color.Black;
             gbFirma.Location = new Point(0, 0);
             gbFirma.Name = "gbFirma";
-            gbFirma.Size = new Size(1355, 748);
+            gbFirma.Size = new Size(1355, 736);
             gbFirma.TabIndex = 0;
             gbFirma.TabStop = false;
             gbFirma.Text = "Podaci o firmi";
             // 
             // gbFirmaInfo
             // 
+            gbFirmaInfo.Controls.Add(pictureBox2);
+            gbFirmaInfo.Controls.Add(btnEditFirma);
+            gbFirmaInfo.Controls.Add(lblEmail);
+            gbFirmaInfo.Controls.Add(label8);
+            gbFirmaInfo.Controls.Add(lblBrojTelefona);
+            gbFirmaInfo.Controls.Add(label6);
+            gbFirmaInfo.Controls.Add(lblAdresa);
+            gbFirmaInfo.Controls.Add(label5);
+            gbFirmaInfo.Controls.Add(lblNaziv);
             gbFirmaInfo.Controls.Add(label7);
             gbFirmaInfo.Dock = DockStyle.Bottom;
             gbFirmaInfo.FlatStyle = FlatStyle.Flat;
             gbFirmaInfo.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbFirmaInfo.ForeColor = Color.Black;
-            gbFirmaInfo.Location = new Point(3, 358);
+            gbFirmaInfo.Location = new Point(3, 346);
             gbFirmaInfo.Name = "gbFirmaInfo";
             gbFirmaInfo.Size = new Size(1349, 387);
             gbFirmaInfo.TabIndex = 3;
             gbFirmaInfo.TabStop = false;
             gbFirmaInfo.Text = "Informacije";
             // 
+            // btnEditFirma
+            // 
+            btnEditFirma.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEditFirma.BackColor = SystemColors.Info;
+            btnEditFirma.FlatStyle = FlatStyle.Flat;
+            btnEditFirma.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEditFirma.Location = new Point(261, 294);
+            btnEditFirma.Name = "btnEditFirma";
+            btnEditFirma.Size = new Size(309, 42);
+            btnEditFirma.TabIndex = 12;
+            btnEditFirma.Text = "Uredi informacije o firmi";
+            btnEditFirma.UseVisualStyleBackColor = false;
+            btnEditFirma.Click += btnEditFirma_Click;
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmail.Location = new Point(362, 234);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(84, 23);
+            lblEmail.TabIndex = 8;
+            lblEmail.Text = "Naziv: ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(261, 233);
+            label8.Name = "label8";
+            label8.Size = new Size(72, 23);
+            label8.TabIndex = 7;
+            label8.Text = "Email:";
+            // 
+            // lblBrojTelefona
+            // 
+            lblBrojTelefona.AutoSize = true;
+            lblBrojTelefona.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBrojTelefona.Location = new Point(410, 176);
+            lblBrojTelefona.Name = "lblBrojTelefona";
+            lblBrojTelefona.Size = new Size(84, 23);
+            lblBrojTelefona.TabIndex = 6;
+            lblBrojTelefona.Text = "Naziv: ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(261, 176);
+            label6.Name = "label6";
+            label6.Size = new Size(143, 23);
+            label6.TabIndex = 5;
+            label6.Text = "Broj telefona:";
+            // 
+            // lblAdresa
+            // 
+            lblAdresa.AutoSize = true;
+            lblAdresa.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAdresa.Location = new Point(362, 117);
+            lblAdresa.Name = "lblAdresa";
+            lblAdresa.Size = new Size(92, 23);
+            lblAdresa.TabIndex = 4;
+            lblAdresa.Text = "Adresa:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(261, 117);
+            label5.Name = "label5";
+            label5.Size = new Size(84, 23);
+            label5.TabIndex = 3;
+            label5.Text = "Adresa:";
+            // 
+            // lblNaziv
+            // 
+            lblNaziv.AutoSize = true;
+            lblNaziv.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNaziv.Location = new Point(362, 54);
+            lblNaziv.Name = "lblNaziv";
+            lblNaziv.Size = new Size(84, 23);
+            lblNaziv.TabIndex = 2;
+            lblNaziv.Text = "Naziv: ";
+            // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.Location = new Point(6, 55);
+            label7.Location = new Point(261, 54);
             label7.Name = "label7";
-            label7.Size = new Size(141, 23);
+            label7.Size = new Size(78, 23);
             label7.TabIndex = 1;
-            label7.Text = "Lista admina:";
+            label7.Text = "Naziv: ";
             // 
             // gbTransakcijee
             // 
@@ -110,7 +213,7 @@
             gbTransakcijee.ForeColor = Color.Black;
             gbTransakcijee.Location = new Point(3, 33);
             gbTransakcijee.Name = "gbTransakcijee";
-            gbTransakcijee.Size = new Size(1349, 712);
+            gbTransakcijee.Size = new Size(1349, 700);
             gbTransakcijee.TabIndex = 2;
             gbTransakcijee.TabStop = false;
             gbTransakcijee.Text = "Transakcije";
@@ -126,7 +229,7 @@
             gbAdmin.ForeColor = Color.Black;
             gbAdmin.Location = new Point(0, 0);
             gbAdmin.Name = "gbAdmin";
-            gbAdmin.Size = new Size(675, 748);
+            gbAdmin.Size = new Size(675, 736);
             gbAdmin.TabIndex = 1;
             gbAdmin.TabStop = false;
             gbAdmin.Text = "Podaci o administratorima ";
@@ -205,7 +308,7 @@
             bgNoviAdmin.Controls.Add(btnNoviAdmin);
             bgNoviAdmin.Dock = DockStyle.Bottom;
             bgNoviAdmin.Font = new Font("Verdana", 18F, FontStyle.Bold);
-            bgNoviAdmin.Location = new Point(0, 358);
+            bgNoviAdmin.Location = new Point(0, 346);
             bgNoviAdmin.Name = "bgNoviAdmin";
             bgNoviAdmin.Size = new Size(675, 390);
             bgNoviAdmin.TabIndex = 4;
@@ -279,12 +382,11 @@
             // btnNoviAdmin
             // 
             btnNoviAdmin.BackColor = SystemColors.Info;
-            btnNoviAdmin.Dock = DockStyle.Bottom;
             btnNoviAdmin.FlatStyle = FlatStyle.Flat;
             btnNoviAdmin.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnNoviAdmin.Location = new Point(3, 345);
+            btnNoviAdmin.Location = new Point(266, 294);
             btnNoviAdmin.Name = "btnNoviAdmin";
-            btnNoviAdmin.Size = new Size(669, 42);
+            btnNoviAdmin.Size = new Size(315, 42);
             btnNoviAdmin.TabIndex = 11;
             btnNoviAdmin.Text = "Dodaj Novog Admina";
             btnNoviAdmin.UseVisualStyleBackColor = false;
@@ -296,7 +398,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1355, 748);
+            panel1.Size = new Size(1355, 736);
             panel1.TabIndex = 5;
             // 
             // panel2
@@ -306,12 +408,22 @@
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(680, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(675, 748);
+            panel2.Size = new Size(675, 736);
             panel2.TabIndex = 6;
             // 
             // err
             // 
             err.ContainerControl = this;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.notepad;
+            pictureBox2.Location = new Point(27, 60);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(207, 199);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 13;
+            pictureBox2.TabStop = false;
             // 
             // FirmaInfo
             // 
@@ -323,7 +435,7 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FirmaInfo";
-            Size = new Size(1355, 748);
+            Size = new Size(1355, 736);
             Load += FirmaInfo_Load;
             gbFirma.ResumeLayout(false);
             gbFirmaInfo.ResumeLayout(false);
@@ -337,6 +449,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)err).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -365,5 +478,14 @@
         private GroupBox gbFirmaInfo;
         private Label label7;
         private GroupBox gbTransakcijee;
+        private Label lblEmail;
+        private Label label8;
+        private Label lblBrojTelefona;
+        private Label label6;
+        private Label lblAdresa;
+        private Label label5;
+        private Label lblNaziv;
+        private Button btnEditFirma;
+        private PictureBox pictureBox2;
     }
 }

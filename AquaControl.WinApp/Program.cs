@@ -1,3 +1,6 @@
+using AquaControl.Data;
+using AquaControl.Infrastructure;
+
 namespace AquaControl.WinApp
 {
     internal static class Program
@@ -8,9 +11,27 @@ namespace AquaControl.WinApp
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            var baza = new AquaControlDbContext();
+
+            var listaFirmi = baza.Firme.ToList();
+            var listaAdmina = baza.Admini.ToList();
+
+            // Ako nema firmi, otvori formu za unos
+            if (listaFirmi.Count == 0)
+            {
+                Application.Run(new EditFirma());
+
+            }
+            if (listaAdmina.Count == 0)
+            {
+                Application.Run(new EditAdmin());
+            }
+
+
+
+            // Pokreni glavnu prijavu
             Application.Run(new Prijava());
         }
     }

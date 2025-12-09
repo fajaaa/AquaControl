@@ -11,8 +11,6 @@ namespace AquaControl.Data
         public int FirmaId { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
-        public int MjestoId { get; set; }
-        public Mjesto Mjesto { get; set; }
         public string BrojTelefona { get; set; }
         public string Email { get; set; }
         public decimal StanjeRacuna { get; set; }

@@ -233,7 +233,7 @@
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditAdmin";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EditAdmin";
             Load += EditAdmin_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -1,4 +1,5 @@
 ﻿using AquaControl.Data;
+using AquaControl.WinApp.Helpers;
 
 namespace AquaControl.WinApp
 {
@@ -27,10 +28,11 @@ namespace AquaControl.WinApp
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            panelContent.Controls.Clear();
-            FirmaInfo info = new FirmaInfo(admin);
-            //FirmaInfo.Dock=DockStyle.Fill;
-            panelContent.Controls.Add(info);
+            //panelContent.Controls.Clear();
+            //FirmaInfo info = new FirmaInfo(admin);
+            //panelContent.Controls.Add(info);
+
+            panelContent.ClearPanelAndAddNewUserControl(new FirmaInfo(admin));
         }
     }
 }

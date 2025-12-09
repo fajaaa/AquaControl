@@ -17,6 +17,7 @@ namespace AquaControl.WinApp
     {
         AquaControlDbContext baza = new AquaControlDbContext();
         List<Admin> listaAdmina = new List<Admin>();
+        Firma? firma = new Firma();
         private Admin admin;
 
         public FirmaInfo(Admin admin = null)
@@ -33,6 +34,19 @@ namespace AquaControl.WinApp
             dgvAdmini.DefaultCellStyle.Font = new Font("Verdana", 9, FontStyle.Regular);
             dgvAdmini.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 11, FontStyle.Regular);
 
+            UcitajFirmu();
+        }
+
+        private void UcitajFirmu()
+        {
+            firma = baza.Firme.First();
+            if (firma != null)
+            {
+                lblNaziv.Text = firma.Naziv;
+                lblAdresa.Text = firma.Adresa;
+                lblBrojTelefona.Text = firma.BrojTelefona;
+                lblEmail.Text = firma.Email;
+            }
         }
 
         public void UcitajAdmine()
@@ -86,8 +100,8 @@ namespace AquaControl.WinApp
                         baza.Admini.Remove(admin);
                         baza.SaveChanges();
                     }
+                    UcitajAdmine();
                 }
-                UcitajAdmine();
             }
         }
 
@@ -125,6 +139,13 @@ namespace AquaControl.WinApp
                 return true;
             }
             else return false;
+        }
+
+        private void btnEditFirma_Click(object sender, EventArgs e)
+        {
+            var forma = new EditFirma(firma);
+            forma.ShowDialog();
+            UcitajFirmu();
         }
     }
 }
