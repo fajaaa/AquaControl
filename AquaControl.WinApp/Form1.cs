@@ -1,7 +1,5 @@
 using AquaControl.Data;
 using AquaControl.Infrastructure;
-using AquaControl.WinApp.Properties;
-using Microsoft.EntityFrameworkCore;
 using System.Drawing.Drawing2D;
 
 namespace AquaControl.WinApp

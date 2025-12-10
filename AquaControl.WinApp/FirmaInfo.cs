@@ -1,22 +1,17 @@
 ﻿using AquaControl.Data;
 using AquaControl.Infrastructure;
 using AquaControl.WinApp.Helpers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AquaControl.WinApp
 {
     public partial class FirmaInfo : UserControl
     {
         AquaControlDbContext baza = new AquaControlDbContext();
+
         List<Admin> listaAdmina = new List<Admin>();
+        List<Transakcija> listaTransakcija = new List<Transakcija>();
+
         Firma? firma = new Firma();
         private Admin admin;
 
@@ -25,16 +20,53 @@ namespace AquaControl.WinApp
             InitializeComponent();
             Dock = DockStyle.Fill;
             dgvAdmini.AutoGenerateColumns = false;
+            dgvTransakcije.AutoGenerateColumns = false;
             this.admin = admin;
         }
 
         private void FirmaInfo_Load(object sender, EventArgs e)
         {
-            UcitajAdmine();
             dgvAdmini.DefaultCellStyle.Font = new Font("Verdana", 9, FontStyle.Regular);
             dgvAdmini.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 11, FontStyle.Regular);
 
+            dgvTransakcije.DefaultCellStyle.Font = new Font("Verdana", 9, FontStyle.Regular);
+            dgvTransakcije.ColumnHeadersDefaultCellStyle.Font = new Font("Verdana", 11, FontStyle.Regular);
+
+            UcitajTransakcije();
             UcitajFirmu();
+            UcitajAdmine();
+        }
+
+        private void UcitajTransakcije()
+        {
+            listaTransakcija.Clear();
+            listaTransakcija = baza.Transakcije.ToList();
+
+            if (listaTransakcija.Count > 0)
+            {
+                var tabela = new DataTable();
+
+                tabela.Columns.Add("Datum");
+                tabela.Columns.Add("Iznos");
+                tabela.Columns.Add("Opis");
+                tabela.Columns.Add("Transakcija");
+
+                for (int i = 0; i < listaTransakcija.Count; i++)
+                {
+                    var transakcija = listaTransakcija[i];
+                    var red = tabela.NewRow();
+
+                    red["Datum"] = transakcija.Datum.ToBosnianFormat();
+                    red["Iznos"] = transakcija.Iznos.ToString();
+                    red["Opis"] = transakcija.Opis;
+                    red["Transakcija"] = transakcija.JeUplata ? "Uplata" : "Isplata";
+
+                    tabela.Rows.Add(red);
+                }
+
+                dgvTransakcije.DataSource = null;
+                dgvTransakcije.DataSource = tabela;
+            }
         }
 
         private void UcitajFirmu()
@@ -46,6 +78,7 @@ namespace AquaControl.WinApp
                 lblAdresa.Text = firma.Adresa;
                 lblBrojTelefona.Text = firma.BrojTelefona;
                 lblEmail.Text = firma.Email;
+                lblStanjeRacuna.Text = firma.StanjeRacuna.ToString() + "KM";
             }
         }
 
@@ -67,6 +100,7 @@ namespace AquaControl.WinApp
                     red["UserName"] = admin.Username;
                     tabela.Rows.Add(red);
                 }
+                dgvAdmini.DataSource = null;
                 dgvAdmini.DataSource = tabela;
             }
         }
@@ -146,6 +180,34 @@ namespace AquaControl.WinApp
             var forma = new EditFirma(firma);
             forma.ShowDialog();
             UcitajFirmu();
+        }
+
+        private void dgvTransakcije_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var row = dgvTransakcije.Rows[e.RowIndex];
+
+            string? tip = row.Cells["Transakcija"].Value?.ToString();
+
+            if (tip == "Uplata")
+            {
+                row.DefaultCellStyle.BackColor = Color.LightBlue;
+                row.DefaultCellStyle.ForeColor = Color.Black;
+            }
+            else if (tip == "Isplata")
+            {
+                row.DefaultCellStyle.BackColor = Color.LightCoral;
+                row.DefaultCellStyle.ForeColor = Color.White;
+            }
+        }
+
+        private void btnTransakcija_Click(object sender, EventArgs e)
+        {
+            var forma = new frmTransakcija(firma);
+            if (forma.ShowDialog() == DialogResult.OK)
+            {
+                UcitajTransakcije();
+                UcitajFirmu();
+            }
         }
     }
 }

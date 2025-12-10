@@ -118,11 +118,11 @@
             lbl1.AutoSize = true;
             lbl1.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lbl1.ForeColor = Color.FromArgb(0, 117, 214);
-            lbl1.Location = new Point(316, 66);
+            lbl1.Location = new Point(343, 66);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(172, 45);
+            lbl1.Size = new Size(105, 45);
             lbl1.TabIndex = 12;
-            lbl1.Text = "Edit Firme";
+            lbl1.Text = "Firma";
             // 
             // pictureBox1
             // 

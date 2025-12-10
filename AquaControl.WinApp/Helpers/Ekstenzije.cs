@@ -23,5 +23,10 @@ namespace AquaControl.WinApp.Helpers
             targetPanel.Controls.Clear();
             targetPanel.Controls.Add(newControl);
         }
+
+        public static string ToBosnianFormat(this DateTime date)
+        {
+            return date.ToString("dd.MM.yyyy");
+        }
     }
 }

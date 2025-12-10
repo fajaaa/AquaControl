@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             gbFirma = new GroupBox();
             gbFirmaInfo = new GroupBox();
+            pictureBox2 = new PictureBox();
             btnEditFirma = new Button();
             lblEmail = new Label();
             label8 = new Label();
@@ -41,6 +42,16 @@
             lblNaziv = new Label();
             label7 = new Label();
             gbTransakcijee = new GroupBox();
+            lblStanjeRacuna = new Label();
+            label9 = new Label();
+            btnTransakcija = new Button();
+            label4 = new Label();
+            dgvTransakcije = new DataGridView();
+            Datum = new DataGridViewTextBoxColumn();
+            Iznos = new DataGridViewTextBoxColumn();
+            Opis = new DataGridViewTextBoxColumn();
+            Transakcija = new DataGridViewTextBoxColumn();
+            uredi = new DataGridViewButtonColumn();
             gbAdmin = new GroupBox();
             label1 = new Label();
             lblAdmini = new Label();
@@ -60,9 +71,11 @@
             panel1 = new Panel();
             panel2 = new Panel();
             err = new ErrorProvider(components);
-            pictureBox2 = new PictureBox();
             gbFirma.SuspendLayout();
             gbFirmaInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            gbTransakcijee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvTransakcije).BeginInit();
             gbAdmin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAdmini).BeginInit();
             bgNoviAdmin.SuspendLayout();
@@ -70,7 +83,6 @@
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)err).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // gbFirma
@@ -83,7 +95,7 @@
             gbFirma.ForeColor = Color.Black;
             gbFirma.Location = new Point(0, 0);
             gbFirma.Name = "gbFirma";
-            gbFirma.Size = new Size(1355, 736);
+            gbFirma.Size = new Size(1566, 894);
             gbFirma.TabIndex = 0;
             gbFirma.TabStop = false;
             gbFirma.Text = "Podaci o firmi";
@@ -104,12 +116,22 @@
             gbFirmaInfo.FlatStyle = FlatStyle.Flat;
             gbFirmaInfo.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbFirmaInfo.ForeColor = Color.Black;
-            gbFirmaInfo.Location = new Point(3, 346);
+            gbFirmaInfo.Location = new Point(3, 504);
             gbFirmaInfo.Name = "gbFirmaInfo";
-            gbFirmaInfo.Size = new Size(1349, 387);
+            gbFirmaInfo.Size = new Size(1560, 387);
             gbFirmaInfo.TabIndex = 3;
             gbFirmaInfo.TabStop = false;
             gbFirmaInfo.Text = "Informacije";
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.notepad;
+            pictureBox2.Location = new Point(27, 60);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(207, 199);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 13;
+            pictureBox2.TabStop = false;
             // 
             // btnEditFirma
             // 
@@ -207,16 +229,126 @@
             // 
             // gbTransakcijee
             // 
+            gbTransakcijee.Controls.Add(lblStanjeRacuna);
+            gbTransakcijee.Controls.Add(label9);
+            gbTransakcijee.Controls.Add(btnTransakcija);
+            gbTransakcijee.Controls.Add(label4);
+            gbTransakcijee.Controls.Add(dgvTransakcije);
             gbTransakcijee.Dock = DockStyle.Fill;
             gbTransakcijee.FlatStyle = FlatStyle.Flat;
             gbTransakcijee.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbTransakcijee.ForeColor = Color.Black;
             gbTransakcijee.Location = new Point(3, 33);
             gbTransakcijee.Name = "gbTransakcijee";
-            gbTransakcijee.Size = new Size(1349, 700);
+            gbTransakcijee.Size = new Size(1560, 858);
             gbTransakcijee.TabIndex = 2;
             gbTransakcijee.TabStop = false;
             gbTransakcijee.Text = "Transakcije";
+            // 
+            // lblStanjeRacuna
+            // 
+            lblStanjeRacuna.AutoSize = true;
+            lblStanjeRacuna.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStanjeRacuna.Location = new Point(227, 433);
+            lblStanjeRacuna.Name = "lblStanjeRacuna";
+            lblStanjeRacuna.Size = new Size(158, 23);
+            lblStanjeRacuna.TabIndex = 15;
+            lblStanjeRacuna.Text = "stanjeRacuna";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(6, 433);
+            label9.Name = "label9";
+            label9.Size = new Size(215, 23);
+            label9.TabIndex = 14;
+            label9.Text = "Stanje racuna firme: ";
+            // 
+            // btnTransakcija
+            // 
+            btnTransakcija.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnTransakcija.BackColor = SystemColors.Info;
+            btnTransakcija.FlatStyle = FlatStyle.Flat;
+            btnTransakcija.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnTransakcija.Location = new Point(619, 423);
+            btnTransakcija.Name = "btnTransakcija";
+            btnTransakcija.Size = new Size(309, 42);
+            btnTransakcija.TabIndex = 13;
+            btnTransakcija.Text = "Dodaj novu transakciju";
+            btnTransakcija.UseVisualStyleBackColor = false;
+            btnTransakcija.Click += btnTransakcija_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Verdana", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(6, 33);
+            label4.Name = "label4";
+            label4.Size = new Size(175, 23);
+            label4.TabIndex = 2;
+            label4.Text = "Lista transakcija:";
+            // 
+            // dgvTransakcije
+            // 
+            dgvTransakcije.AllowUserToAddRows = false;
+            dgvTransakcije.AllowUserToDeleteRows = false;
+            dgvTransakcije.BackgroundColor = SystemColors.Info;
+            dgvTransakcije.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTransakcije.Columns.AddRange(new DataGridViewColumn[] { Datum, Iznos, Opis, Transakcija, uredi });
+            dgvTransakcije.GridColor = SystemColors.Info;
+            dgvTransakcije.Location = new Point(6, 59);
+            dgvTransakcije.Name = "dgvTransakcije";
+            dgvTransakcije.ReadOnly = true;
+            dgvTransakcije.Size = new Size(922, 343);
+            dgvTransakcije.TabIndex = 1;
+            dgvTransakcije.RowPrePaint += dgvTransakcije_RowPrePaint;
+            // 
+            // Datum
+            // 
+            Datum.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Datum.DataPropertyName = "Datum";
+            Datum.HeaderText = "Datum";
+            Datum.Name = "Datum";
+            Datum.ReadOnly = true;
+            Datum.Width = 127;
+            // 
+            // Iznos
+            // 
+            Iznos.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Iznos.DataPropertyName = "Iznos";
+            Iznos.HeaderText = "Iznos";
+            Iznos.Name = "Iznos";
+            Iznos.ReadOnly = true;
+            Iznos.Width = 112;
+            // 
+            // Opis
+            // 
+            Opis.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Opis.DataPropertyName = "Opis";
+            Opis.HeaderText = "Opis";
+            Opis.Name = "Opis";
+            Opis.ReadOnly = true;
+            // 
+            // Transakcija
+            // 
+            Transakcija.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Transakcija.DataPropertyName = "Transakcija";
+            Transakcija.HeaderText = "Transakcija";
+            Transakcija.Name = "Transakcija";
+            Transakcija.ReadOnly = true;
+            Transakcija.Width = 193;
+            // 
+            // uredi
+            // 
+            uredi.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            uredi.DataPropertyName = "uredi";
+            uredi.HeaderText = "";
+            uredi.Name = "uredi";
+            uredi.ReadOnly = true;
+            uredi.Text = "Edit";
+            uredi.UseColumnTextForButtonValue = true;
+            uredi.Width = 5;
             // 
             // gbAdmin
             // 
@@ -229,7 +361,7 @@
             gbAdmin.ForeColor = Color.Black;
             gbAdmin.Location = new Point(0, 0);
             gbAdmin.Name = "gbAdmin";
-            gbAdmin.Size = new Size(675, 736);
+            gbAdmin.Size = new Size(675, 894);
             gbAdmin.TabIndex = 1;
             gbAdmin.TabStop = false;
             gbAdmin.Text = "Podaci o administratorima ";
@@ -308,7 +440,7 @@
             bgNoviAdmin.Controls.Add(btnNoviAdmin);
             bgNoviAdmin.Dock = DockStyle.Bottom;
             bgNoviAdmin.Font = new Font("Verdana", 18F, FontStyle.Bold);
-            bgNoviAdmin.Location = new Point(0, 346);
+            bgNoviAdmin.Location = new Point(0, 504);
             bgNoviAdmin.Name = "bgNoviAdmin";
             bgNoviAdmin.Size = new Size(675, 390);
             bgNoviAdmin.TabIndex = 4;
@@ -398,7 +530,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1355, 736);
+            panel1.Size = new Size(1566, 894);
             panel1.TabIndex = 5;
             // 
             // panel2
@@ -406,24 +538,14 @@
             panel2.Controls.Add(bgNoviAdmin);
             panel2.Controls.Add(gbAdmin);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(680, 0);
+            panel2.Location = new Point(891, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(675, 736);
+            panel2.Size = new Size(675, 894);
             panel2.TabIndex = 6;
             // 
             // err
             // 
             err.ContainerControl = this;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.notepad;
-            pictureBox2.Location = new Point(27, 60);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(207, 199);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 13;
-            pictureBox2.TabStop = false;
             // 
             // FirmaInfo
             // 
@@ -435,11 +557,15 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "FirmaInfo";
-            Size = new Size(1355, 736);
+            Size = new Size(1566, 894);
             Load += FirmaInfo_Load;
             gbFirma.ResumeLayout(false);
             gbFirmaInfo.ResumeLayout(false);
             gbFirmaInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            gbTransakcijee.ResumeLayout(false);
+            gbTransakcijee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvTransakcije).EndInit();
             gbAdmin.ResumeLayout(false);
             gbAdmin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAdmini).EndInit();
@@ -449,7 +575,6 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)err).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -487,5 +612,15 @@
         private Label lblNaziv;
         private Button btnEditFirma;
         private PictureBox pictureBox2;
+        private Label label4;
+        private DataGridView dgvTransakcije;
+        private DataGridViewTextBoxColumn Datum;
+        private DataGridViewTextBoxColumn Iznos;
+        private DataGridViewTextBoxColumn Opis;
+        private DataGridViewTextBoxColumn Transakcija;
+        private DataGridViewButtonColumn uredi;
+        private Label label9;
+        private Button btnTransakcija;
+        private Label lblStanjeRacuna;
     }
 }
