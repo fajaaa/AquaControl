@@ -17,8 +17,6 @@ namespace AquaControl.Data
         public int MjestoId { get; set; } 
         public Mjesto Mjesto { get; set; }
 
-        //public ICollection<MjerniUredjaj> Uredjaji { get; set; }
-
         public override string ToString()
         {
             return $"{Ime} ({ImeOca}) {Prezime}";

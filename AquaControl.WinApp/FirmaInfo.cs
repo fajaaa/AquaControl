@@ -21,6 +21,12 @@ namespace AquaControl.WinApp
             Dock = DockStyle.Fill;
             dgvAdmini.AutoGenerateColumns = false;
             dgvTransakcije.AutoGenerateColumns = false;
+
+            dgvAdmini.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAdmini.MultiSelect = false;
+
+            dgvTransakcije.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTransakcije.MultiSelect = false;
             this.admin = admin;
         }
 

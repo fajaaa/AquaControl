@@ -34,5 +34,10 @@ namespace AquaControl.WinApp
 
             panelContent.ClearPanelAndAddNewUserControl(new FirmaInfo(admin));
         }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            panelContent.ClearPanelAndAddNewUserControl(new KorisniciInfo());
+        }
     }
 }

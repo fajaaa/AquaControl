@@ -32,7 +32,7 @@
             panelMenu = new Panel();
             btnSettings = new Button();
             button3 = new Button();
-            button2 = new Button();
+            btnUsers = new Button();
             button1 = new Button();
             panelForPic = new Panel();
             lblAdmin = new Label();
@@ -49,14 +49,14 @@
             panelMenu.BorderStyle = BorderStyle.Fixed3D;
             panelMenu.Controls.Add(btnSettings);
             panelMenu.Controls.Add(button3);
-            panelMenu.Controls.Add(button2);
+            panelMenu.Controls.Add(btnUsers);
             panelMenu.Controls.Add(button1);
             panelMenu.Controls.Add(panelForPic);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Margin = new Padding(3, 2, 3, 2);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(252, 672);
+            panelMenu.Size = new Size(252, 759);
             panelMenu.TabIndex = 0;
             // 
             // btnSettings
@@ -67,7 +67,7 @@
             btnSettings.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSettings.ForeColor = Color.FromArgb(255, 255, 128);
             btnSettings.Image = Properties.Resources.settings_icona;
-            btnSettings.Location = new Point(0, 582);
+            btnSettings.Location = new Point(0, 669);
             btnSettings.Margin = new Padding(3, 2, 3, 2);
             btnSettings.Name = "btnSettings";
             btnSettings.Size = new Size(248, 86);
@@ -96,23 +96,24 @@
             button3.TextImageRelation = TextImageRelation.ImageAboveText;
             button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnUsers
             // 
-            button2.Dock = DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.FromArgb(255, 255, 128);
-            button2.Image = Properties.Resources.user_icona;
-            button2.Location = new Point(0, 216);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(248, 86);
-            button2.TabIndex = 2;
-            button2.Text = "Users";
-            button2.TextAlign = ContentAlignment.BottomCenter;
-            button2.TextImageRelation = TextImageRelation.ImageAboveText;
-            button2.UseVisualStyleBackColor = true;
+            btnUsers.Dock = DockStyle.Top;
+            btnUsers.FlatAppearance.BorderSize = 0;
+            btnUsers.FlatStyle = FlatStyle.Flat;
+            btnUsers.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnUsers.ForeColor = Color.FromArgb(255, 255, 128);
+            btnUsers.Image = Properties.Resources.user_icona;
+            btnUsers.Location = new Point(0, 216);
+            btnUsers.Margin = new Padding(3, 2, 3, 2);
+            btnUsers.Name = "btnUsers";
+            btnUsers.Size = new Size(248, 86);
+            btnUsers.TabIndex = 2;
+            btnUsers.Text = "Users";
+            btnUsers.TextAlign = ContentAlignment.BottomCenter;
+            btnUsers.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnUsers.UseVisualStyleBackColor = true;
+            btnUsers.Click += btnUsers_Click;
             // 
             // button1
             // 
@@ -173,7 +174,7 @@
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(252, 0);
             panelContent.Name = "panelContent";
-            panelContent.Size = new Size(1254, 672);
+            panelContent.Size = new Size(1346, 759);
             panelContent.TabIndex = 1;
             // 
             // MainForm
@@ -182,7 +183,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.FromArgb(95, 129, 140);
-            ClientSize = new Size(1506, 672);
+            ClientSize = new Size(1598, 759);
             Controls.Add(panelContent);
             Controls.Add(panelMenu);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -208,7 +209,7 @@
         private Label lblAdmin;
         private Button button1;
         private Button button3;
-        private Button button2;
+        private Button btnUsers;
         private Button btnSettings;
         private Panel panelContent;
     }
