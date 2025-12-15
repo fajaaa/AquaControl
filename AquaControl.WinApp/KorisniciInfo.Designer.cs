@@ -38,8 +38,11 @@
             Kontakt = new DataGridViewTextBoxColumn();
             Mjesto = new DataGridViewTextBoxColumn();
             Aktivan = new DataGridViewCheckBoxColumn();
+            Edit = new DataGridViewButtonColumn();
+            Delete = new DataGridViewButtonColumn();
             label1 = new Label();
             pnlFilterKorisnici = new Panel();
+            btnDodajKorisnika = new Button();
             cmbFilterMjesta = new ComboBox();
             cmbStatus = new ComboBox();
             txtFilterImeOca = new TextBox();
@@ -115,14 +118,17 @@
             // 
             dgvKorisnici.AllowUserToAddRows = false;
             dgvKorisnici.AllowUserToDeleteRows = false;
+            dgvKorisnici.BackgroundColor = SystemColors.Info;
             dgvKorisnici.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvKorisnici.Columns.AddRange(new DataGridViewColumn[] { Ime, ImeOca, Prezime, Kontakt, Mjesto, Aktivan });
+            dgvKorisnici.Columns.AddRange(new DataGridViewColumn[] { Ime, ImeOca, Prezime, Kontakt, Mjesto, Aktivan, Edit, Delete });
             dgvKorisnici.Dock = DockStyle.Fill;
+            dgvKorisnici.GridColor = SystemColors.Info;
             dgvKorisnici.Location = new Point(0, 58);
             dgvKorisnici.Name = "dgvKorisnici";
             dgvKorisnici.ReadOnly = true;
             dgvKorisnici.Size = new Size(802, 509);
             dgvKorisnici.TabIndex = 1;
+            dgvKorisnici.CellContentClick += dgvKorisnici_CellContentClick;
             // 
             // Ime
             // 
@@ -131,6 +137,7 @@
             Ime.HeaderText = "Ime";
             Ime.Name = "Ime";
             Ime.ReadOnly = true;
+            Ime.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // ImeOca
             // 
@@ -139,6 +146,7 @@
             ImeOca.HeaderText = "Ime oca";
             ImeOca.Name = "ImeOca";
             ImeOca.ReadOnly = true;
+            ImeOca.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Prezime
             // 
@@ -147,6 +155,7 @@
             Prezime.HeaderText = "Prezime";
             Prezime.Name = "Prezime";
             Prezime.ReadOnly = true;
+            Prezime.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Kontakt
             // 
@@ -155,6 +164,7 @@
             Kontakt.HeaderText = "Kontakt";
             Kontakt.Name = "Kontakt";
             Kontakt.ReadOnly = true;
+            Kontakt.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Mjesto
             // 
@@ -163,6 +173,7 @@
             Mjesto.HeaderText = "Mjesto";
             Mjesto.Name = "Mjesto";
             Mjesto.ReadOnly = true;
+            Mjesto.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Aktivan
             // 
@@ -171,6 +182,26 @@
             Aktivan.HeaderText = "Aktivan";
             Aktivan.Name = "Aktivan";
             Aktivan.ReadOnly = true;
+            // 
+            // Edit
+            // 
+            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Edit.HeaderText = "";
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            Edit.Width = 5;
+            // 
+            // Delete
+            // 
+            Delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Delete.HeaderText = "";
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            Delete.Width = 5;
             // 
             // label1
             // 
@@ -187,6 +218,7 @@
             // pnlFilterKorisnici
             // 
             pnlFilterKorisnici.BackColor = Color.FromArgb(95, 129, 140);
+            pnlFilterKorisnici.Controls.Add(btnDodajKorisnika);
             pnlFilterKorisnici.Controls.Add(cmbFilterMjesta);
             pnlFilterKorisnici.Controls.Add(cmbStatus);
             pnlFilterKorisnici.Controls.Add(txtFilterImeOca);
@@ -199,13 +231,27 @@
             pnlFilterKorisnici.Size = new Size(802, 193);
             pnlFilterKorisnici.TabIndex = 4;
             // 
+            // btnDodajKorisnika
+            // 
+            btnDodajKorisnika.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnDodajKorisnika.BackColor = SystemColors.Info;
+            btnDodajKorisnika.FlatStyle = FlatStyle.Flat;
+            btnDodajKorisnika.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDodajKorisnika.Location = new Point(531, 83);
+            btnDodajKorisnika.Name = "btnDodajKorisnika";
+            btnDodajKorisnika.Size = new Size(216, 42);
+            btnDodajKorisnika.TabIndex = 13;
+            btnDodajKorisnika.Text = "Dodaj korisnika";
+            btnDodajKorisnika.UseVisualStyleBackColor = false;
+            btnDodajKorisnika.Click += btnDodajKorisnika_Click;
+            // 
             // cmbFilterMjesta
             // 
             cmbFilterMjesta.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilterMjesta.FlatStyle = FlatStyle.Flat;
             cmbFilterMjesta.Font = new Font("Verdana", 11F);
             cmbFilterMjesta.FormattingEnabled = true;
-            cmbFilterMjesta.Location = new Point(473, 56);
+            cmbFilterMjesta.Location = new Point(255, 55);
             cmbFilterMjesta.Name = "cmbFilterMjesta";
             cmbFilterMjesta.Size = new Size(216, 26);
             cmbFilterMjesta.TabIndex = 5;
@@ -218,9 +264,9 @@
             cmbStatus.Font = new Font("Verdana", 11F);
             cmbStatus.FormattingEnabled = true;
             cmbStatus.Items.AddRange(new object[] { "Svi", "Aktivni", "Neaktivni" });
-            cmbStatus.Location = new Point(265, 55);
+            cmbStatus.Location = new Point(255, 99);
             cmbStatus.Name = "cmbStatus";
-            cmbStatus.Size = new Size(170, 26);
+            cmbStatus.Size = new Size(216, 26);
             cmbStatus.TabIndex = 4;
             cmbStatus.SelectedIndexChanged += cmbStatus_SelectedIndexChanged;
             // 
@@ -312,9 +358,11 @@
             // 
             dgvInkasanti.AllowUserToAddRows = false;
             dgvInkasanti.AllowUserToDeleteRows = false;
+            dgvInkasanti.BackgroundColor = SystemColors.Info;
             dgvInkasanti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvInkasanti.Columns.AddRange(new DataGridViewColumn[] { ImeInkasanta, PrezimeInkasanta, Telefon, AktivanInkasant });
             dgvInkasanti.Dock = DockStyle.Top;
+            dgvInkasanti.GridColor = SystemColors.Info;
             dgvInkasanti.Location = new Point(0, 58);
             dgvInkasanti.Name = "dgvInkasanti";
             dgvInkasanti.ReadOnly = true;
@@ -427,14 +475,7 @@
         private TextBox txtFilterPrezime;
         private Label lblFilteri;
         private TextBox txtFilterIme;
-        private ComboBox cmbStatus;
         private ComboBox cmbFilterMjesta;
-        private DataGridViewTextBoxColumn Ime;
-        private DataGridViewTextBoxColumn ImeOca;
-        private DataGridViewTextBoxColumn Prezime;
-        private DataGridViewTextBoxColumn Kontakt;
-        private DataGridViewTextBoxColumn Mjesto;
-        private DataGridViewCheckBoxColumn Aktivan;
         private Panel pnlNaslovInkasanti;
         private Label label3;
         private Panel pnlForDgvInkasanti;
@@ -444,5 +485,15 @@
         private DataGridViewTextBoxColumn PrezimeInkasanta;
         private DataGridViewTextBoxColumn Telefon;
         private DataGridViewCheckBoxColumn AktivanInkasant;
+        private Button btnDodajKorisnika;
+        private ComboBox cmbStatus;
+        private DataGridViewTextBoxColumn Ime;
+        private DataGridViewTextBoxColumn ImeOca;
+        private DataGridViewTextBoxColumn Prezime;
+        private DataGridViewTextBoxColumn Kontakt;
+        private DataGridViewTextBoxColumn Mjesto;
+        private DataGridViewCheckBoxColumn Aktivan;
+        private DataGridViewButtonColumn Edit;
+        private DataGridViewButtonColumn Delete;
     }
 }

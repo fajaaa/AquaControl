@@ -74,6 +74,7 @@ namespace AquaControl.WinApp
                     baza.Firme.Add(firma);
                 }
                 baza.SaveChanges();
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
 

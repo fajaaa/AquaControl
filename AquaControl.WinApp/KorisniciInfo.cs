@@ -1,15 +1,7 @@
 ﻿using AquaControl.Data;
 using AquaControl.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AquaControl.WinApp
 {
@@ -17,12 +9,15 @@ namespace AquaControl.WinApp
     {
         AquaControlDbContext baza = new AquaControlDbContext();
         List<Korisnik> ListaKorisnika = new List<Korisnik>();
+        List<Korisnik> FiltriranaListaKorisnika = new List<Korisnik>();
         List<Mjesto> ListaMjesta = new List<Mjesto>();
         List<Inkasant> ListaInkasanti = new List<Inkasant>();
+        private Admin? admin;
 
-        public KorisniciInfo()
+        public KorisniciInfo(Admin? admin = null)
         {
             InitializeComponent();
+            this.admin = admin;
             this.Dock = DockStyle.Fill;
 
             cmbStatus.SelectedIndex = 0;
@@ -35,6 +30,8 @@ namespace AquaControl.WinApp
             dgvInkasanti.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInkasanti.MultiSelect = false;
         }
+
+
 
         private void KorisniciInfo_Load(object sender, EventArgs e)
         {
@@ -78,7 +75,7 @@ namespace AquaControl.WinApp
         private void UcitajMjesta()
         {
             ListaMjesta.Clear();
-            ListaMjesta = baza.Mjesta.ToList();
+            ListaMjesta = baza.Mjesta.AsNoTracking().ToList();
 
             ListaMjesta.Insert(0, new Mjesto
             {
@@ -100,6 +97,7 @@ namespace AquaControl.WinApp
                             .Include(k => k.Mjesto)
                             .ToList();
 
+            FiltriranaListaKorisnika = ListaKorisnika;
             UcitajKorisnikeUdgv(ListaKorisnika);
         }
 
@@ -133,36 +131,6 @@ namespace AquaControl.WinApp
                 }
                 dgvKorisnici.DataSource = tabela;
             }
-        }
-
-        private void txtFilterIme_TextChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
-        }
-
-        private void txtFilterImeOca_TextChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
-        }
-
-        private void txtFilterPrezime_TextChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
-        }
-
-        private void chFilterAktivan_CheckedChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
-        }
-
-        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
-        }
-
-        private void cmbFilterMjesta_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            OsvjeziKorisnike();
         }
 
         private void OsvjeziKorisnike()
@@ -213,11 +181,73 @@ namespace AquaControl.WinApp
             }
 
             // Na kraju – izvuci listu i bindi na DGV
-            var rezultat = query.ToList();
+            FiltriranaListaKorisnika = query.ToList();
 
-            UcitajKorisnikeUdgv(rezultat);
+            UcitajKorisnikeUdgv(FiltriranaListaKorisnika);
         }
 
+        private void btnDodajKorisnika_Click(object sender, EventArgs e)
+        {
+            var forma = new EditKorisnik();
+            if (forma.ShowDialog() == DialogResult.OK)
+            {
+                UcitajKorisnikeIzBaze();
+            }
+        }
 
+        private void txtFilterIme_TextChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void txtFilterImeOca_TextChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void txtFilterPrezime_TextChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void chFilterAktivan_CheckedChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void cmbFilterMjesta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OsvjeziKorisnike();
+        }
+
+        private void dgvKorisnici_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                var forma = new EditKorisnik(FiltriranaListaKorisnika[e.RowIndex]);
+                if (forma.ShowDialog() == DialogResult.OK)
+                {
+                    OsvjeziKorisnike();
+                }
+            }
+            else if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Delete" && admin.IsSuperAdmin)
+            {
+                baza.ChangeTracker.Clear();
+                var korisnik = FiltriranaListaKorisnika[e.RowIndex];
+
+                baza.Korisnici.Remove(korisnik);
+                baza.SaveChanges();
+
+                UcitajKorisnikeIzBaze();
+
+                MessageBox.Show(korisnik.ToString());
+            }
+                
+        }
     }
 }

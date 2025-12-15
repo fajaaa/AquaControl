@@ -10,8 +10,6 @@ namespace AquaControl.Data
     {
         public int MjestoId { get; set; }
         public string Naziv { get; set; }
-        public int GradId { get; set; }
-        public Grad Grad { get; set; }
 
         //public ICollection<MjerniUredjaj> Uredjaji { get; set; }
         //public ICollection<Korisnik> Korisnici { get; set; } 

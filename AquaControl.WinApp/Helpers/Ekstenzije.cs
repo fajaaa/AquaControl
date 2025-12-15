@@ -28,5 +28,15 @@ namespace AquaControl.WinApp.Helpers
         {
             return date.ToString("dd.MM.yyyy");
         }
+
+        public static string FirstCapitalLetter(this string tekst)
+        {
+            if (string.IsNullOrWhiteSpace(tekst))
+                return tekst;
+
+            tekst = tekst.Trim();
+
+            return char.ToUpper(tekst[0]) + tekst.Substring(1).ToLower();
+        }
     }
 }

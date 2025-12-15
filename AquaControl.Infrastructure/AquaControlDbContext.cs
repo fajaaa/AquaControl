@@ -23,7 +23,6 @@ namespace AquaControl.Infrastructure
             optionsBuilder.UseSqlite(dbPutanja);
         }
 
-        public DbSet<Grad> Gradovi { get; set; }
         public DbSet<Mjesto> Mjesta { get; set; }
         public DbSet<Korisnik> Korisnici { get; set; }
         public DbSet<Tarifa> Tarife { get; set; }
