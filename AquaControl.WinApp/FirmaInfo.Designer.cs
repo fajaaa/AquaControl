@@ -47,18 +47,10 @@
             btnTransakcija = new Button();
             label4 = new Label();
             dgvTransakcije = new DataGridView();
-            Datum = new DataGridViewTextBoxColumn();
-            Iznos = new DataGridViewTextBoxColumn();
-            Opis = new DataGridViewTextBoxColumn();
-            Transakcija = new DataGridViewTextBoxColumn();
-            uredi = new DataGridViewButtonColumn();
             gbAdmin = new GroupBox();
             label1 = new Label();
             lblAdmini = new Label();
             dgvAdmini = new DataGridView();
-            UserName = new DataGridViewTextBoxColumn();
-            Edit = new DataGridViewButtonColumn();
-            Delete = new DataGridViewButtonColumn();
             bgNoviAdmin = new GroupBox();
             txtPrezime = new TextBox();
             lblPrezime = new Label();
@@ -71,6 +63,14 @@
             panel1 = new Panel();
             panel2 = new Panel();
             err = new ErrorProvider(components);
+            Datum = new DataGridViewTextBoxColumn();
+            Iznos = new DataGridViewTextBoxColumn();
+            Opis = new DataGridViewTextBoxColumn();
+            Transakcija = new DataGridViewTextBoxColumn();
+            uredi = new DataGridViewButtonColumn();
+            UserName = new DataGridViewTextBoxColumn();
+            Edit = new DataGridViewButtonColumn();
+            Delete = new DataGridViewButtonColumn();
             gbFirma.SuspendLayout();
             gbFirmaInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -304,52 +304,6 @@
             dgvTransakcije.TabIndex = 1;
             dgvTransakcije.RowPrePaint += dgvTransakcije_RowPrePaint;
             // 
-            // Datum
-            // 
-            Datum.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            Datum.DataPropertyName = "Datum";
-            Datum.HeaderText = "Datum";
-            Datum.Name = "Datum";
-            Datum.ReadOnly = true;
-            Datum.Width = 127;
-            // 
-            // Iznos
-            // 
-            Iznos.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            Iznos.DataPropertyName = "Iznos";
-            Iznos.HeaderText = "Iznos";
-            Iznos.Name = "Iznos";
-            Iznos.ReadOnly = true;
-            Iznos.Width = 112;
-            // 
-            // Opis
-            // 
-            Opis.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Opis.DataPropertyName = "Opis";
-            Opis.HeaderText = "Opis";
-            Opis.Name = "Opis";
-            Opis.ReadOnly = true;
-            // 
-            // Transakcija
-            // 
-            Transakcija.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            Transakcija.DataPropertyName = "Transakcija";
-            Transakcija.HeaderText = "Transakcija";
-            Transakcija.Name = "Transakcija";
-            Transakcija.ReadOnly = true;
-            Transakcija.Width = 193;
-            // 
-            // uredi
-            // 
-            uredi.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            uredi.DataPropertyName = "uredi";
-            uredi.HeaderText = "";
-            uredi.Name = "uredi";
-            uredi.ReadOnly = true;
-            uredi.Text = "Edit";
-            uredi.UseColumnTextForButtonValue = true;
-            uredi.Width = 5;
-            // 
             // gbAdmin
             // 
             gbAdmin.Controls.Add(label1);
@@ -400,33 +354,6 @@
             dgvAdmini.Size = new Size(663, 258);
             dgvAdmini.TabIndex = 0;
             dgvAdmini.CellContentClick += dgvAdmini_CellContentClick;
-            // 
-            // UserName
-            // 
-            UserName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            UserName.DataPropertyName = "UserName";
-            UserName.HeaderText = "UserName";
-            UserName.Name = "UserName";
-            UserName.ReadOnly = true;
-            // 
-            // Edit
-            // 
-            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Edit.DataPropertyName = "Edit";
-            Edit.HeaderText = "";
-            Edit.Name = "Edit";
-            Edit.ReadOnly = true;
-            Edit.Text = "Edit";
-            Edit.UseColumnTextForButtonValue = true;
-            // 
-            // Delete
-            // 
-            Delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Delete.HeaderText = "";
-            Delete.Name = "Delete";
-            Delete.ReadOnly = true;
-            Delete.Text = "Delete";
-            Delete.UseColumnTextForButtonValue = true;
             // 
             // bgNoviAdmin
             // 
@@ -547,6 +474,84 @@
             // 
             err.ContainerControl = this;
             // 
+            // Datum
+            // 
+            Datum.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Datum.DataPropertyName = "Datum";
+            Datum.HeaderText = "Datum";
+            Datum.Name = "Datum";
+            Datum.ReadOnly = true;
+            Datum.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Datum.Width = 108;
+            // 
+            // Iznos
+            // 
+            Iznos.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Iznos.DataPropertyName = "Iznos";
+            Iznos.HeaderText = "Iznos";
+            Iznos.Name = "Iznos";
+            Iznos.ReadOnly = true;
+            Iznos.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Iznos.Width = 93;
+            // 
+            // Opis
+            // 
+            Opis.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Opis.DataPropertyName = "Opis";
+            Opis.HeaderText = "Opis";
+            Opis.Name = "Opis";
+            Opis.ReadOnly = true;
+            Opis.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Transakcija
+            // 
+            Transakcija.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Transakcija.DataPropertyName = "Transakcija";
+            Transakcija.HeaderText = "Transakcija";
+            Transakcija.Name = "Transakcija";
+            Transakcija.ReadOnly = true;
+            Transakcija.SortMode = DataGridViewColumnSortMode.NotSortable;
+            Transakcija.Width = 174;
+            // 
+            // uredi
+            // 
+            uredi.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            uredi.DataPropertyName = "uredi";
+            uredi.HeaderText = "";
+            uredi.Name = "uredi";
+            uredi.ReadOnly = true;
+            uredi.Text = "Edit";
+            uredi.UseColumnTextForButtonValue = true;
+            uredi.Width = 5;
+            // 
+            // UserName
+            // 
+            UserName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            UserName.DataPropertyName = "UserName";
+            UserName.HeaderText = "UserName";
+            UserName.Name = "UserName";
+            UserName.ReadOnly = true;
+            UserName.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Edit
+            // 
+            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Edit.DataPropertyName = "Edit";
+            Edit.HeaderText = "";
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            // 
+            // Delete
+            // 
+            Delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Delete.HeaderText = "";
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            // 
             // FirmaInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -583,9 +588,6 @@
         private GroupBox gbFirma;
         private GroupBox gbAdmin;
         private DataGridView dgvAdmini;
-        private DataGridViewTextBoxColumn UserName;
-        private DataGridViewButtonColumn Edit;
-        private DataGridViewButtonColumn Delete;
         private Label lblAdmini;
         private Label label1;
         private Button btnNoviAdmin;
@@ -614,13 +616,16 @@
         private PictureBox pictureBox2;
         private Label label4;
         private DataGridView dgvTransakcije;
+        private Label label9;
+        private Button btnTransakcija;
+        private Label lblStanjeRacuna;
         private DataGridViewTextBoxColumn Datum;
         private DataGridViewTextBoxColumn Iznos;
         private DataGridViewTextBoxColumn Opis;
         private DataGridViewTextBoxColumn Transakcija;
         private DataGridViewButtonColumn uredi;
-        private Label label9;
-        private Button btnTransakcija;
-        private Label lblStanjeRacuna;
+        private DataGridViewTextBoxColumn UserName;
+        private DataGridViewButtonColumn Edit;
+        private DataGridViewButtonColumn Delete;
     }
 }

@@ -29,13 +29,13 @@ namespace AquaControl.WinApp
                 txtPrezime.Text = korisnik.Prezime;
                 ckAktivan.Checked = korisnik.Aktivan;
 
-
                 txtKontakt.Text = string.IsNullOrWhiteSpace(korisnik.Kontakt)
                                    ? string.Empty
                                    : korisnik.Kontakt;
 
                 cbMjesta.SelectedValue = korisnik.MjestoId;
-            }else
+            }
+            else
                 UcitajMjesta();
 
         }
@@ -84,8 +84,6 @@ namespace AquaControl.WinApp
                 mjestoId = m.MjestoId;
             }
 
-            //var mjesto = baza.Mjesta.Local.FirstOrDefault(x => x.MjestoId == mjestoId)
-            // ?? baza.Mjesta.Find(mjestoId);
             var mjesto = ListaMjesta.SingleOrDefault(m => m.MjestoId == mjestoId);
 
             if (Validiraj())
@@ -94,9 +92,9 @@ namespace AquaControl.WinApp
                 {
                     var korisnik = new Korisnik()
                     {
-                        Ime = txtIme.Text.FirstCapitalLetter(),
-                        ImeOca = txtImeOca.Text.FirstCapitalLetter(),
-                        Prezime = txtPrezime.Text.FirstCapitalLetter(),
+                        Ime = txtIme.Text.Trim().FirstCapitalLetter(),
+                        ImeOca = txtImeOca.Text.Trim().FirstCapitalLetter(),
+                        Prezime = txtPrezime.Text.Trim().FirstCapitalLetter(),
                         Kontakt = string.IsNullOrWhiteSpace(txtKontakt.Text) ? null : txtKontakt.Text.Trim(),
                         Aktivan = ckAktivan.Checked,
                         MjestoId = mjestoId,
@@ -106,21 +104,14 @@ namespace AquaControl.WinApp
                 }
                 else
                 {
-                    korisnik.Ime = txtIme.Text.FirstCapitalLetter();
-                    korisnik.ImeOca = txtImeOca.Text.FirstCapitalLetter();
-                    korisnik.Prezime = txtPrezime.Text.FirstCapitalLetter();
+                    korisnik.Ime = txtIme.Text.Trim().FirstCapitalLetter();
+                    korisnik.ImeOca = txtImeOca.Text.Trim().FirstCapitalLetter();
+                    korisnik.Prezime = txtPrezime.Text.Trim().FirstCapitalLetter();
                     korisnik.Kontakt = string.IsNullOrWhiteSpace(txtKontakt.Text) ? null : txtKontakt.Text.Trim();
                     korisnik.Aktivan = ckAktivan.Checked;
 
                     korisnik.MjestoId = mjesto.MjestoId;
-                    korisnik.Mjesto = mjesto; // bitno
-
-                    //korisnik.Ime = txtIme.Text.FirstCapitalLetter();
-                    //korisnik.ImeOca =txtImeOca.Text.FirstCapitalLetter();
-                    //korisnik.Prezime =txtPrezime.Text.FirstCapitalLetter();
-                    //korisnik.Kontakt = string.IsNullOrWhiteSpace(txtKontakt.Text) ? null : txtKontakt.Text.Trim();
-                    //korisnik.Aktivan= ckAktivan.Checked;
-                    //korisnik.MjestoId = mjestoId;
+                    korisnik.Mjesto = mjesto;
 
                     baza.Korisnici.Update(korisnik);
                 }
@@ -129,8 +120,6 @@ namespace AquaControl.WinApp
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-
-
         }
 
         private bool Validiraj()

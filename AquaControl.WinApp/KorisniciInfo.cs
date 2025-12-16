@@ -1,5 +1,6 @@
 ﻿using AquaControl.Data;
 using AquaControl.Infrastructure;
+using AquaControl.WinApp.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
@@ -84,10 +85,10 @@ namespace AquaControl.WinApp
             });
 
             cmbFilterMjesta.DataSource = ListaMjesta;
-            cmbFilterMjesta.DisplayMember = "Naziv";    // šta vidi korisnik
-            cmbFilterMjesta.ValueMember = "MjestoId";   // šta se sprema u Korisnik.MjestoId
+            cmbFilterMjesta.DisplayMember = "Naziv";
+            cmbFilterMjesta.ValueMember = "MjestoId";
 
-            cmbFilterMjesta.SelectedIndex = 0; // da ništa nije izabrano na početku
+            cmbFilterMjesta.SelectedIndex = 0;
         }
 
         private void UcitajKorisnikeIzBaze()
@@ -139,28 +140,24 @@ namespace AquaControl.WinApp
                         .Include(k => k.Mjesto)
                         .AsQueryable();
 
-            // 🔹 Filter Ime
             if (!string.IsNullOrWhiteSpace(txtFilterIme.Text))
             {
                 var ime = txtFilterIme.Text.ToLower();
                 query = query.Where(k => k.Ime.ToLower().Contains(ime));
             }
 
-            // 🔹 Filter Ime oca
             if (!string.IsNullOrWhiteSpace(txtFilterImeOca.Text))
             {
                 var imeOca = txtFilterImeOca.Text.ToLower();
                 query = query.Where(k => k.ImeOca.ToLower().Contains(imeOca));
             }
 
-            // 🔹 Filter Prezime
             if (!string.IsNullOrWhiteSpace(txtFilterPrezime.Text))
             {
                 var prezime = txtFilterPrezime.Text.ToLower();
                 query = query.Where(k => k.Prezime.ToLower().Contains(prezime));
             }
 
-            // 🔹 Filter Mjesto (cmbFilterMjesta -> "Sva mjesta" ili konkretno mjesto)
             if (cmbFilterMjesta.SelectedValue is int mjestoId && mjestoId > 0)
             {
                 // ako je izabrano konkretno mjesto (MjestoId > 0), filtriraj po njemu
@@ -195,6 +192,29 @@ namespace AquaControl.WinApp
             }
         }
 
+        private void dgvKorisnici_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Edit")
+            {
+                var forma = new EditKorisnik(FiltriranaListaKorisnika[e.RowIndex]);
+                if (forma.ShowDialog() == DialogResult.OK)
+                {
+                    OsvjeziKorisnike();
+                }
+            }
+            else if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Delete" && admin.IsSuperAdmin)
+            {
+                baza.ChangeTracker.Clear();
+                var korisnik = FiltriranaListaKorisnika[e.RowIndex];
+
+                baza.Korisnici.Remove(korisnik);
+                baza.SaveChanges();
+
+                UcitajKorisnikeIzBaze();
+
+                MessageBox.Show($"Izbrisali ste korisnika: {korisnik.ToString()}");
+            }
+        }
         private void txtFilterIme_TextChanged(object sender, EventArgs e)
         {
             OsvjeziKorisnike();
@@ -225,29 +245,71 @@ namespace AquaControl.WinApp
             OsvjeziKorisnike();
         }
 
-        private void dgvKorisnici_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvInkasanti_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Edit")
+            if (e.RowIndex < 0)
+                return;
+
+            var colName = dgvInkasanti.Columns[e.ColumnIndex].Name;
+
+            if (admin != null)
             {
-                var forma = new EditKorisnik(FiltriranaListaKorisnika[e.RowIndex]);
-                if (forma.ShowDialog() == DialogResult.OK)
+                if (colName == "Edit2")
                 {
-                    OsvjeziKorisnike();
+                    var forma = new EditInkasant(ListaInkasanti[e.RowIndex]);
+                    if (forma.ShowDialog() == DialogResult.OK)
+                    {
+                        UcitajInkasante();
+                    }
+                }
+                else if (colName == "Delete2" && admin.IsSuperAdmin)
+                {
+                    var inkasant = ListaInkasanti[e.RowIndex];
+
+                    if (MessageBox.Show("Da li sigurno želiš obrisati ovog inkasanta?",
+                    "Potvrda",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        baza.Inkasanti.Remove(inkasant);
+                        baza.SaveChanges();
+
+                        UcitajInkasante();
+                    }
                 }
             }
-            else if (dgvKorisnici.Columns[e.ColumnIndex].Name == "Delete" && admin.IsSuperAdmin)
-            {
-                baza.ChangeTracker.Clear();
-                var korisnik = FiltriranaListaKorisnika[e.RowIndex];
+        }
 
-                baza.Korisnici.Remove(korisnik);
+        private void btnNoviInkasant_Click(object sender, EventArgs e)
+        {
+            if (Validiraj())
+            {
+                var noviInkasant = new Inkasant()
+                {
+                    Ime = Helpers.Ekstenzije.FirstCapitalLetter(txtImeInkasanta.Text),
+                    Prezime = Helpers.Ekstenzije.FirstCapitalLetter(txtPrezimeInlasanta.Text),
+                    Telefon = Helpers.Ekstenzije.FormatPhoneNumber(txtKontaktInkasanta.Text),
+                    Aktivan = cbAktivanInkasant.Checked,
+                };
+                baza.Inkasanti.Add(noviInkasant);
                 baza.SaveChanges();
 
-                UcitajKorisnikeIzBaze();
+                UcitajInkasante();
 
-                MessageBox.Show(korisnik.ToString());
+                txtImeInkasanta.ClearText();
+                txtPrezimeInlasanta.ClearText();
+                txtKontaktInkasanta.ClearText();
             }
-                
+        }
+
+        private bool Validiraj()
+        {
+            if (Helpers.Validator.ProvjeriUnos(txtImeInkasanta, err, "Vrijednost nije unesena") &&
+                Helpers.Validator.ProvjeriUnos(txtPrezimeInlasanta, err, "Vrijednost nije unesena") &&
+                Helpers.Validator.ProvjeriUnos(txtKontaktInkasanta, err, "Vrijednost nije unesena"))
+                return true;
+
+            return false;
         }
     }
 }

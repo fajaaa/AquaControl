@@ -38,5 +38,23 @@ namespace AquaControl.WinApp.Helpers
 
             return char.ToUpper(tekst[0]) + tekst.Substring(1).ToLower();
         }
+
+        public static string FormatPhoneNumber(this string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return string.Empty;
+
+            // uzmi samo cifre
+            var digits = new string(input.Where(char.IsDigit).ToArray());
+
+            if (digits.Length <= 3)
+                return digits;
+
+            if (digits.Length <= 6)
+                return $"{digits[..3]}-{digits[3..]}";
+
+            // 3-3-ostatak (bez ograničenja dužine)
+            return $"{digits[..3]}-{digits[3..6]}-{digits[6..]}";
+        }
     }
 }

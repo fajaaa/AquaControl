@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tblLayout = new TableLayoutPanel();
             pnl60 = new Panel();
             pnlForDgvKorisnika = new Panel();
@@ -52,15 +53,27 @@
             pnlNaslovKorisnici = new Panel();
             label2 = new Label();
             pnl40 = new Panel();
+            cbAktivanInkasant = new CheckBox();
+            txtPrezimeInlasanta = new TextBox();
+            lblPrezime = new Label();
+            pictureBox1 = new PictureBox();
+            txtKontaktInkasanta = new TextBox();
+            txtImeInkasanta = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            btnNoviInkasant = new Button();
             pnlForDgvInkasanti = new Panel();
             dgvInkasanti = new DataGridView();
             ImeInkasanta = new DataGridViewTextBoxColumn();
             PrezimeInkasanta = new DataGridViewTextBoxColumn();
             Telefon = new DataGridViewTextBoxColumn();
             AktivanInkasant = new DataGridViewCheckBoxColumn();
+            Edit2 = new DataGridViewButtonColumn();
+            Delete2 = new DataGridViewButtonColumn();
             label4 = new Label();
             pnlNaslovInkasanti = new Panel();
             label3 = new Label();
+            err = new ErrorProvider(components);
             tblLayout.SuspendLayout();
             pnl60.SuspendLayout();
             pnlForDgvKorisnika.SuspendLayout();
@@ -68,9 +81,11 @@
             pnlFilterKorisnici.SuspendLayout();
             pnlNaslovKorisnici.SuspendLayout();
             pnl40.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnlForDgvInkasanti.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInkasanti).BeginInit();
             pnlNaslovInkasanti.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)err).BeginInit();
             SuspendLayout();
             // 
             // tblLayout
@@ -333,6 +348,15 @@
             // pnl40
             // 
             pnl40.BackColor = Color.FromArgb(95, 129, 140);
+            pnl40.Controls.Add(cbAktivanInkasant);
+            pnl40.Controls.Add(txtPrezimeInlasanta);
+            pnl40.Controls.Add(lblPrezime);
+            pnl40.Controls.Add(pictureBox1);
+            pnl40.Controls.Add(txtKontaktInkasanta);
+            pnl40.Controls.Add(txtImeInkasanta);
+            pnl40.Controls.Add(label5);
+            pnl40.Controls.Add(label6);
+            pnl40.Controls.Add(btnNoviInkasant);
             pnl40.Controls.Add(pnlForDgvInkasanti);
             pnl40.Controls.Add(pnlNaslovInkasanti);
             pnl40.Dock = DockStyle.Fill;
@@ -340,6 +364,94 @@
             pnl40.Name = "pnl40";
             pnl40.Size = new Size(656, 824);
             pnl40.TabIndex = 1;
+            // 
+            // cbAktivanInkasant
+            // 
+            cbAktivanInkasant.AutoSize = true;
+            cbAktivanInkasant.Font = new Font("Verdana", 10F);
+            cbAktivanInkasant.Location = new Point(276, 705);
+            cbAktivanInkasant.Name = "cbAktivanInkasant";
+            cbAktivanInkasant.Size = new Size(79, 21);
+            cbAktivanInkasant.TabIndex = 20;
+            cbAktivanInkasant.Text = "Aktivan";
+            cbAktivanInkasant.UseVisualStyleBackColor = true;
+            // 
+            // txtPrezimeInlasanta
+            // 
+            txtPrezimeInlasanta.Font = new Font("Verdana", 11F);
+            txtPrezimeInlasanta.Location = new Point(276, 570);
+            txtPrezimeInlasanta.Name = "txtPrezimeInlasanta";
+            txtPrezimeInlasanta.Size = new Size(315, 25);
+            txtPrezimeInlasanta.TabIndex = 16;
+            // 
+            // lblPrezime
+            // 
+            lblPrezime.AutoSize = true;
+            lblPrezime.Font = new Font("Verdana", 10F);
+            lblPrezime.Location = new Point(276, 550);
+            lblPrezime.Name = "lblPrezime";
+            lblPrezime.Size = new Size(62, 17);
+            lblPrezime.TabIndex = 17;
+            lblPrezime.Text = "Prezime";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.id_card;
+            pictureBox1.Location = new Point(45, 477);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(207, 199);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
+            // 
+            // txtKontaktInkasanta
+            // 
+            txtKontaktInkasanta.Font = new Font("Verdana", 11F);
+            txtKontaktInkasanta.Location = new Point(276, 651);
+            txtKontaktInkasanta.Name = "txtKontaktInkasanta";
+            txtKontaktInkasanta.Size = new Size(315, 25);
+            txtKontaktInkasanta.TabIndex = 18;
+            // 
+            // txtImeInkasanta
+            // 
+            txtImeInkasanta.Font = new Font("Verdana", 11F);
+            txtImeInkasanta.Location = new Point(276, 497);
+            txtImeInkasanta.Name = "txtImeInkasanta";
+            txtImeInkasanta.Size = new Size(315, 25);
+            txtImeInkasanta.TabIndex = 15;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Verdana", 10F);
+            label5.Location = new Point(276, 631);
+            label5.Name = "label5";
+            label5.Size = new Size(57, 17);
+            label5.TabIndex = 13;
+            label5.Text = "Telefon";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Verdana", 10F);
+            label6.Location = new Point(276, 477);
+            label6.Name = "label6";
+            label6.Size = new Size(34, 17);
+            label6.TabIndex = 12;
+            label6.Text = "Ime";
+            // 
+            // btnNoviInkasant
+            // 
+            btnNoviInkasant.BackColor = SystemColors.Info;
+            btnNoviInkasant.FlatStyle = FlatStyle.Flat;
+            btnNoviInkasant.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNoviInkasant.Location = new Point(276, 750);
+            btnNoviInkasant.Name = "btnNoviInkasant";
+            btnNoviInkasant.Size = new Size(315, 42);
+            btnNoviInkasant.TabIndex = 19;
+            btnNoviInkasant.Text = "Dodaj Novog Inkasanta";
+            btnNoviInkasant.UseVisualStyleBackColor = false;
+            btnNoviInkasant.Click += btnNoviInkasant_Click;
             // 
             // pnlForDgvInkasanti
             // 
@@ -360,7 +472,7 @@
             dgvInkasanti.AllowUserToDeleteRows = false;
             dgvInkasanti.BackgroundColor = SystemColors.Info;
             dgvInkasanti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvInkasanti.Columns.AddRange(new DataGridViewColumn[] { ImeInkasanta, PrezimeInkasanta, Telefon, AktivanInkasant });
+            dgvInkasanti.Columns.AddRange(new DataGridViewColumn[] { ImeInkasanta, PrezimeInkasanta, Telefon, AktivanInkasant, Edit2, Delete2 });
             dgvInkasanti.Dock = DockStyle.Top;
             dgvInkasanti.GridColor = SystemColors.Info;
             dgvInkasanti.Location = new Point(0, 58);
@@ -368,6 +480,7 @@
             dgvInkasanti.ReadOnly = true;
             dgvInkasanti.Size = new Size(656, 211);
             dgvInkasanti.TabIndex = 1;
+            dgvInkasanti.CellContentClick += dgvInkasanti_CellContentClick;
             // 
             // ImeInkasanta
             // 
@@ -376,6 +489,7 @@
             ImeInkasanta.HeaderText = "Ime";
             ImeInkasanta.Name = "ImeInkasanta";
             ImeInkasanta.ReadOnly = true;
+            ImeInkasanta.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // PrezimeInkasanta
             // 
@@ -384,6 +498,7 @@
             PrezimeInkasanta.HeaderText = "Prezime";
             PrezimeInkasanta.Name = "PrezimeInkasanta";
             PrezimeInkasanta.ReadOnly = true;
+            PrezimeInkasanta.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // Telefon
             // 
@@ -392,6 +507,7 @@
             Telefon.HeaderText = "Telefon";
             Telefon.Name = "Telefon";
             Telefon.ReadOnly = true;
+            Telefon.SortMode = DataGridViewColumnSortMode.NotSortable;
             // 
             // AktivanInkasant
             // 
@@ -400,6 +516,26 @@
             AktivanInkasant.HeaderText = "Aktivan";
             AktivanInkasant.Name = "AktivanInkasant";
             AktivanInkasant.ReadOnly = true;
+            // 
+            // Edit2
+            // 
+            Edit2.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Edit2.HeaderText = "";
+            Edit2.Name = "Edit2";
+            Edit2.ReadOnly = true;
+            Edit2.Text = "Edit";
+            Edit2.UseColumnTextForButtonValue = true;
+            Edit2.Width = 5;
+            // 
+            // Delete2
+            // 
+            Delete2.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Delete2.HeaderText = "";
+            Delete2.Name = "Delete2";
+            Delete2.ReadOnly = true;
+            Delete2.Text = "Delete";
+            Delete2.UseColumnTextForButtonValue = true;
+            Delete2.Width = 5;
             // 
             // label4
             // 
@@ -433,6 +569,10 @@
             label3.TabIndex = 2;
             label3.Text = "Inkasanti";
             // 
+            // err
+            // 
+            err.ContainerControl = this;
+            // 
             // KorisniciInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -452,11 +592,14 @@
             pnlNaslovKorisnici.ResumeLayout(false);
             pnlNaslovKorisnici.PerformLayout();
             pnl40.ResumeLayout(false);
+            pnl40.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnlForDgvInkasanti.ResumeLayout(false);
             pnlForDgvInkasanti.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvInkasanti).EndInit();
             pnlNaslovInkasanti.ResumeLayout(false);
             pnlNaslovInkasanti.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)err).EndInit();
             ResumeLayout(false);
         }
 
@@ -481,10 +624,6 @@
         private Panel pnlForDgvInkasanti;
         private DataGridView dgvInkasanti;
         private Label label4;
-        private DataGridViewTextBoxColumn ImeInkasanta;
-        private DataGridViewTextBoxColumn PrezimeInkasanta;
-        private DataGridViewTextBoxColumn Telefon;
-        private DataGridViewCheckBoxColumn AktivanInkasant;
         private Button btnDodajKorisnika;
         private ComboBox cmbStatus;
         private DataGridViewTextBoxColumn Ime;
@@ -495,5 +634,21 @@
         private DataGridViewCheckBoxColumn Aktivan;
         private DataGridViewButtonColumn Edit;
         private DataGridViewButtonColumn Delete;
+        private TextBox txtPrezimeInlasanta;
+        private Label lblPrezime;
+        private PictureBox pictureBox1;
+        private TextBox txtKontaktInkasanta;
+        private TextBox txtImeInkasanta;
+        private Label label5;
+        private Label label6;
+        private Button btnNoviInkasant;
+        private DataGridViewTextBoxColumn ImeInkasanta;
+        private DataGridViewTextBoxColumn PrezimeInkasanta;
+        private DataGridViewTextBoxColumn Telefon;
+        private DataGridViewCheckBoxColumn AktivanInkasant;
+        private DataGridViewButtonColumn Edit2;
+        private DataGridViewButtonColumn Delete2;
+        private CheckBox cbAktivanInkasant;
+        private ErrorProvider err;
     }
 }
