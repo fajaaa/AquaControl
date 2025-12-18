@@ -266,6 +266,7 @@
             Name = "frmTransakcija";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Transakcija";
+            Load += frmTransakcija_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)err).EndInit();
             ResumeLayout(false);

@@ -17,16 +17,13 @@ namespace AquaControl.WinApp
     {
         AquaControlDbContext baza = new AquaControlDbContext();
         private Firma? firma;
+        private Transakcija? transakcija;
 
-        public frmTransakcija()
-        {
-
-        }
-
-        public frmTransakcija(Firma? firma = null)
+        public frmTransakcija(Firma? firma = null, Transakcija? transakcija = null)
         {
             InitializeComponent();
             this.firma = firma;
+            this.transakcija = transakcija;
         }
 
         private void lblExit_Click(object sender, EventArgs e)
@@ -51,14 +48,6 @@ namespace AquaControl.WinApp
                 if (rbtnUplata.Checked)
                     jeUplata = true;
 
-                var transakcija = new Transakcija()
-                {
-                    Datum = dtpDatum.Value.Date,
-                    Opis = txtOpis.Text,
-                    Iznos = iznos,
-                    JeUplata = jeUplata
-                };
-
                 if (firma != null)
                 {
                     if (jeUplata)
@@ -73,13 +62,32 @@ namespace AquaControl.WinApp
                     baza.Update(firma);
                 }
 
-                baza.Transakcije.Add(transakcija);
+                if (transakcija != null)
+                {
+                    transakcija.Datum = dtpDatum.Value.Date;
+                    transakcija.Opis = txtOpis.Text;
+                    transakcija.Iznos = iznos;
+                    transakcija.JeUplata = jeUplata;
+
+                    baza.Transakcije.Update(transakcija);
+                }
+                else
+                {
+                    var transakcija = new Transakcija()
+                    {
+                        Datum = dtpDatum.Value.Date,
+                        Opis = txtOpis.Text,
+                        Iznos = iznos,
+                        JeUplata = jeUplata
+                    };
+
+                    baza.Transakcije.Add(transakcija);
+                }
+
                 baza.SaveChanges();
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-                //MessageBox.Show($"Dodali ste transakciju" +
-                //    $"{transakcija.Datum}-{transakcija.Iznos}-{transakcija.Opis}-{transakcija.JeUplata}-");
             }
         }
 
@@ -108,6 +116,25 @@ namespace AquaControl.WinApp
             if ((e.KeyChar == ',' || e.KeyChar == '.') && (txt.Text.Contains(",") || txt.Text.Contains(".")))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void frmTransakcija_Load(object sender, EventArgs e)
+        {
+            if (transakcija != null)
+            {
+                txtIznos.Text = transakcija.Iznos.ToString();
+                txtOpis.Text = transakcija.Opis;
+                dtpDatum.Value = transakcija.Datum;
+
+                if (transakcija.JeUplata)
+                {
+                    rbtnUplata.Checked = true;
+                }
+                else
+                {
+                    rbtnIsplata.Checked = true;
+                }
             }
         }
     }

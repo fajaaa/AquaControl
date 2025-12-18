@@ -215,5 +215,18 @@ namespace AquaControl.WinApp
                 UcitajFirmu();
             }
         }
+
+        private void dgvTransakcije_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvTransakcije.Columns[e.ColumnIndex].Name == "uredi")
+            {
+                var forma = new frmTransakcija(firma, listaTransakcija[e.RowIndex]);
+                if (forma.ShowDialog() == DialogResult.OK)
+                {
+                    UcitajTransakcije();
+                    UcitajFirmu();
+                }
+            }
+        }
     }
 }
