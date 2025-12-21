@@ -13,9 +13,9 @@ namespace AquaControl.WinApp
         List<Transakcija> listaTransakcija = new List<Transakcija>();
 
         Firma? firma = new Firma();
-        private Admin admin;
+        private Admin? admin;
 
-        public FirmaInfo(Admin admin = null)
+        public FirmaInfo(Admin? admin = null)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;

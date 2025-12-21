@@ -30,10 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panelMenu = new Panel();
+            btnMjesta = new Button();
             btnSettings = new Button();
             button3 = new Button();
             btnUsers = new Button();
-            button1 = new Button();
+            btnDashBoard = new Button();
             panelForPic = new Panel();
             lblAdmin = new Label();
             pictureBox1 = new PictureBox();
@@ -47,10 +48,11 @@
             // 
             panelMenu.BackColor = Color.FromArgb(4, 65, 74);
             panelMenu.BorderStyle = BorderStyle.Fixed3D;
+            panelMenu.Controls.Add(btnMjesta);
             panelMenu.Controls.Add(btnSettings);
             panelMenu.Controls.Add(button3);
             panelMenu.Controls.Add(btnUsers);
-            panelMenu.Controls.Add(button1);
+            panelMenu.Controls.Add(btnDashBoard);
             panelMenu.Controls.Add(panelForPic);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
@@ -58,6 +60,25 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(252, 759);
             panelMenu.TabIndex = 0;
+            // 
+            // btnMjesta
+            // 
+            btnMjesta.Dock = DockStyle.Top;
+            btnMjesta.FlatAppearance.BorderSize = 0;
+            btnMjesta.FlatStyle = FlatStyle.Flat;
+            btnMjesta.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnMjesta.ForeColor = Color.FromArgb(255, 255, 128);
+            btnMjesta.Image = Properties.Resources.route1;
+            btnMjesta.Location = new Point(0, 388);
+            btnMjesta.Margin = new Padding(3, 2, 3, 2);
+            btnMjesta.Name = "btnMjesta";
+            btnMjesta.Size = new Size(248, 86);
+            btnMjesta.TabIndex = 5;
+            btnMjesta.Text = "Mjesta";
+            btnMjesta.TextAlign = ContentAlignment.BottomCenter;
+            btnMjesta.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnMjesta.UseVisualStyleBackColor = true;
+            btnMjesta.Click += btnMjesta_Click;
             // 
             // btnSettings
             // 
@@ -109,29 +130,29 @@
             btnUsers.Name = "btnUsers";
             btnUsers.Size = new Size(248, 86);
             btnUsers.TabIndex = 2;
-            btnUsers.Text = "Users";
+            btnUsers.Text = "Korisnici";
             btnUsers.TextAlign = ContentAlignment.BottomCenter;
             btnUsers.TextImageRelation = TextImageRelation.ImageAboveText;
             btnUsers.UseVisualStyleBackColor = true;
             btnUsers.Click += btnUsers_Click;
             // 
-            // button1
+            // btnDashBoard
             // 
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(255, 255, 128);
-            button1.Image = Properties.Resources.dashboard_icona;
-            button1.Location = new Point(0, 130);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(248, 86);
-            button1.TabIndex = 1;
-            button1.Text = "Dashboard";
-            button1.TextAlign = ContentAlignment.BottomCenter;
-            button1.TextImageRelation = TextImageRelation.ImageAboveText;
-            button1.UseVisualStyleBackColor = true;
+            btnDashBoard.Dock = DockStyle.Top;
+            btnDashBoard.FlatAppearance.BorderSize = 0;
+            btnDashBoard.FlatStyle = FlatStyle.Flat;
+            btnDashBoard.Font = new Font("Verdana", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnDashBoard.ForeColor = Color.FromArgb(255, 255, 128);
+            btnDashBoard.Image = Properties.Resources.dashboard_icona;
+            btnDashBoard.Location = new Point(0, 130);
+            btnDashBoard.Margin = new Padding(3, 2, 3, 2);
+            btnDashBoard.Name = "btnDashBoard";
+            btnDashBoard.Size = new Size(248, 86);
+            btnDashBoard.TabIndex = 1;
+            btnDashBoard.Text = "Nadzorna ploca";
+            btnDashBoard.TextAlign = ContentAlignment.BottomCenter;
+            btnDashBoard.TextImageRelation = TextImageRelation.ImageAboveText;
+            btnDashBoard.UseVisualStyleBackColor = true;
             // 
             // panelForPic
             // 
@@ -207,10 +228,11 @@
         private Panel panelForPic;
         private PictureBox pictureBox1;
         private Label lblAdmin;
-        private Button button1;
+        private Button btnDashBoard;
         private Button button3;
         private Button btnUsers;
         private Button btnSettings;
         private Panel panelContent;
+        private Button btnMjesta;
     }
 }
