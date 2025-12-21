@@ -28,23 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tlpMain = new TableLayoutPanel();
             tlpForDgvMjesta = new TableLayoutPanel();
             dgvMjesta = new DataGridView();
+            Naziv = new DataGridViewTextBoxColumn();
+            Edit = new DataGridViewButtonColumn();
             lblMjesta = new Label();
             tlpForAddEditMjesta = new TableLayoutPanel();
-            lblEditMjesta = new Label();
+            lblEditAddMjesta = new Label();
             panel1 = new Panel();
             txtNazivMjesta = new TextBox();
             label6 = new Label();
             pictureBox1 = new PictureBox();
             btnNovoMjesto = new Button();
+            panel2 = new Panel();
+            btnUredi = new Button();
+            txtUrediMjesto = new TextBox();
+            lblUrediMjesto = new Label();
+            err = new ErrorProvider(components);
             tlpMain.SuspendLayout();
             tlpForDgvMjesta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMjesta).BeginInit();
             tlpForAddEditMjesta.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)err).BeginInit();
             SuspendLayout();
             // 
             // tlpMain
@@ -86,6 +96,7 @@
             dgvMjesta.AllowUserToDeleteRows = false;
             dgvMjesta.BackgroundColor = SystemColors.Info;
             dgvMjesta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMjesta.Columns.AddRange(new DataGridViewColumn[] { Naziv, Edit });
             dgvMjesta.Dock = DockStyle.Fill;
             dgvMjesta.GridColor = SystemColors.Info;
             dgvMjesta.Location = new Point(3, 191);
@@ -93,6 +104,27 @@
             dgvMjesta.ReadOnly = true;
             dgvMjesta.Size = new Size(576, 371);
             dgvMjesta.TabIndex = 2;
+            dgvMjesta.CellContentClick += dgvMjesta_CellContentClick;
+            // 
+            // Naziv
+            // 
+            Naziv.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Naziv.DataPropertyName = "Naziv";
+            Naziv.HeaderText = "Naziv";
+            Naziv.Name = "Naziv";
+            Naziv.ReadOnly = true;
+            Naziv.SortMode = DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Edit
+            // 
+            Edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Edit.HeaderText = "";
+            Edit.MinimumWidth = 25;
+            Edit.Name = "Edit";
+            Edit.ReadOnly = true;
+            Edit.Text = "Edit";
+            Edit.UseColumnTextForButtonValue = true;
+            Edit.Width = 25;
             // 
             // lblMjesta
             // 
@@ -110,8 +142,9 @@
             // 
             tlpForAddEditMjesta.ColumnCount = 1;
             tlpForAddEditMjesta.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpForAddEditMjesta.Controls.Add(lblEditMjesta, 0, 0);
+            tlpForAddEditMjesta.Controls.Add(lblEditAddMjesta, 0, 0);
             tlpForAddEditMjesta.Controls.Add(panel1, 0, 1);
+            tlpForAddEditMjesta.Controls.Add(panel2, 0, 2);
             tlpForAddEditMjesta.Dock = DockStyle.Fill;
             tlpForAddEditMjesta.Location = new Point(721, 3);
             tlpForAddEditMjesta.Name = "tlpForAddEditMjesta";
@@ -128,18 +161,18 @@
             tlpForAddEditMjesta.Size = new Size(583, 754);
             tlpForAddEditMjesta.TabIndex = 1;
             // 
-            // lblEditMjesta
+            // lblEditAddMjesta
             // 
-            lblEditMjesta.AutoSize = true;
-            lblEditMjesta.Dock = DockStyle.Bottom;
-            lblEditMjesta.Font = new Font("Verdana", 14F);
-            lblEditMjesta.Location = new Point(3, 150);
-            lblEditMjesta.Name = "lblEditMjesta";
-            lblEditMjesta.Padding = new Padding(0, 0, 0, 15);
-            lblEditMjesta.Size = new Size(577, 38);
-            lblEditMjesta.TabIndex = 2;
-            lblEditMjesta.Text = "Ovdje mozete da dodate ili uredite mjesto";
-            lblEditMjesta.TextAlign = ContentAlignment.MiddleCenter;
+            lblEditAddMjesta.AutoSize = true;
+            lblEditAddMjesta.Dock = DockStyle.Bottom;
+            lblEditAddMjesta.Font = new Font("Verdana", 14F);
+            lblEditAddMjesta.Location = new Point(3, 150);
+            lblEditAddMjesta.Name = "lblEditAddMjesta";
+            lblEditAddMjesta.Padding = new Padding(0, 0, 0, 15);
+            lblEditAddMjesta.Size = new Size(577, 38);
+            lblEditAddMjesta.TabIndex = 2;
+            lblEditAddMjesta.Text = "Ovdje mozete da dodate ili uredite mjesto";
+            lblEditAddMjesta.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel1
             // 
@@ -190,8 +223,55 @@
             btnNovoMjesto.Name = "btnNovoMjesto";
             btnNovoMjesto.Size = new Size(315, 42);
             btnNovoMjesto.TabIndex = 28;
-            btnNovoMjesto.Text = "Potvrdi";
+            btnNovoMjesto.Text = "Dodaj novo mjesto";
             btnNovoMjesto.UseVisualStyleBackColor = false;
+            btnNovoMjesto.Click += btnNovoMjesto_Click;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(btnUredi);
+            panel2.Controls.Add(txtUrediMjesto);
+            panel2.Controls.Add(lblUrediMjesto);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(3, 568);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(577, 183);
+            panel2.TabIndex = 3;
+            // 
+            // btnUredi
+            // 
+            btnUredi.BackColor = SystemColors.Info;
+            btnUredi.FlatStyle = FlatStyle.Flat;
+            btnUredi.Font = new Font("Verdana", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUredi.Location = new Point(198, 127);
+            btnUredi.Name = "btnUredi";
+            btnUredi.Size = new Size(315, 42);
+            btnUredi.TabIndex = 33;
+            btnUredi.Text = "Uredi";
+            btnUredi.UseVisualStyleBackColor = false;
+            btnUredi.Click += btnUredi_Click;
+            // 
+            // txtUrediMjesto
+            // 
+            txtUrediMjesto.Font = new Font("Verdana", 11F);
+            txtUrediMjesto.Location = new Point(198, 68);
+            txtUrediMjesto.Name = "txtUrediMjesto";
+            txtUrediMjesto.Size = new Size(315, 25);
+            txtUrediMjesto.TabIndex = 32;
+            // 
+            // lblUrediMjesto
+            // 
+            lblUrediMjesto.AutoSize = true;
+            lblUrediMjesto.Font = new Font("Verdana", 10F);
+            lblUrediMjesto.Location = new Point(198, 48);
+            lblUrediMjesto.Name = "lblUrediMjesto";
+            lblUrediMjesto.Size = new Size(98, 17);
+            lblUrediMjesto.TabIndex = 31;
+            lblUrediMjesto.Text = "Naziv mjesta";
+            // 
+            // err
+            // 
+            err.ContainerControl = this;
             // 
             // MjestaInfo
             // 
@@ -201,6 +281,7 @@
             Controls.Add(tlpMain);
             Name = "MjestaInfo";
             Size = new Size(1307, 760);
+            Load += MjestaInfo_Load;
             tlpMain.ResumeLayout(false);
             tlpForDgvMjesta.ResumeLayout(false);
             tlpForDgvMjesta.PerformLayout();
@@ -210,6 +291,9 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)err).EndInit();
             ResumeLayout(false);
         }
 
@@ -229,7 +313,14 @@
         private Label label5;
         private Label label6;
         private Button btnNovoMjesto;
-        private Label lblEditMjesta;
+        private Label lblEditAddMjesta;
         private DataGridView dgvMjesta;
+        private DataGridViewTextBoxColumn Naziv;
+        private DataGridViewButtonColumn Edit;
+        private Panel panel2;
+        private Button btnUredi;
+        private TextBox txtUrediMjesto;
+        private Label lblUrediMjesto;
+        private ErrorProvider err;
     }
 }
